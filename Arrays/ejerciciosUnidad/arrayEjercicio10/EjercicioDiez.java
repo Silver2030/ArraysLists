@@ -3,21 +3,27 @@ package arrayEjercicio10;
 public class EjercicioDiez {
 
 	public static void main(String[] args) {
-		int[] n = new int [99];
-		int mayor = -1, menor = 501;
+		int[] n = new int [100];
+		int mayor = -1, menor = 501, posmayor = 0, posmenor = 0;
 		
 		for(int i = 0; i < n.length; i++) {
 			n[i] = random();
 		}
 		
 		for(int i = 0; i < n.length; i++) {
-			if (n[i] > mayor) mayor = n[i];
-			if (n[i] < menor) menor = n[i];
+			if (n[i] > mayor) {
+				mayor = n[i]; 
+				posmayor = i;
+			}
+			if (n[i] < menor) {
+				menor = n[i];
+				posmenor = i;
+			}
 		}
 		
 		for(int i = 0; i < n.length; i++) {
-			if ((mayor == n[i])|(menor == n[i])) System.out.println("**" + n[i] + "**");
-			else System.out.println(n[i]);
+			if ((posmayor == i)|(posmenor == i)) System.out.println("Nº " + i + ") **" + n[i] + "**");
+			else System.out.println("Nº " + i + ") " + n[i]);
 		}
 
 	}
