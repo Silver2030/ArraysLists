@@ -8,12 +8,7 @@ public class Ejercicio7 {
 			resul[i] = dado();
 		}
 		
-		System.out.println("Salio uno un total de " + uno(resul) + " veces");
-		System.out.println("Salio dos un total de " + dos(resul) + " veces");
-		System.out.println("Salio tres un total de " + tres(resul) + " veces");
-		System.out.println("Salio cuatro un total de " + cuatro(resul) + " veces");
-		System.out.println("Salio cinco un total de " + cinco(resul) + " veces");
-		System.out.println("Salio seis un total de " + seis(resul) + " veces");
+		resultados(resul);
 
 	}
 	
@@ -22,52 +17,22 @@ public class Ejercicio7 {
 		return v;
 	}
 	
-	public static int uno(int [] num) {
-		int uno = 0;
+	public static void resultados(int [] num) {
+		int uno = 0, dos = 0, tres = 0, cuatro = 0, cinco = 0, seis = 0;
 		for(int i = 0; i < num.length; i++) {
 			if (num[i] == 1) uno++;
+			else if (num[i] == 2) dos++;
+			else if (num[i] == 3) tres++;
+			else if (num[i] == 4) cuatro++;
+			else if (num[i] == 5) cinco++;
+			else if (num[i] == 6) seis++;
 		}
-		return uno;
+		System.out.println("Salio uno un total de " + uno + " veces");
+		System.out.println("Salio dos un total de " + dos + " veces");
+		System.out.println("Salio tres un total de " + tres + " veces");
+		System.out.println("Salio cuatro un total de " + cuatro + " veces");
+		System.out.println("Salio cinco un total de " + cinco + " veces");
+		System.out.println("Salio seis un total de " + seis + " veces");
 	}
 	
-	public static int dos(int [] num) {
-		int dos = 0;
-		for(int i = 0; i < num.length; i++) {
-			if (num[i] == 2) dos++;
-		}
-		return dos;
-	}
-	
-	public static int tres(int [] num) {
-		int tres = 0;
-		for(int i = 0; i < num.length; i++) {
-			if (num[i] == 3) tres++;
-		}
-		return tres;
-	}
-	
-	public static int cuatro(int [] num) {
-		int cuatro = 0;
-		for(int i = 0; i < num.length; i++) {
-			if (num[i] == 4) cuatro++;
-		}
-		return cuatro;
-	}
-	
-	public static int cinco(int [] num) {
-		int cinco = 0;
-		for(int i = 0; i < num.length; i++) {
-			if (num[i] == 5) cinco++;
-		}
-		return cinco;
-	}
-	
-	public static int seis(int [] num) {
-		int seis = 0;
-		for(int i = 0; i < num.length; i++) {
-			if (num[i] == 6) seis++;
-		}
-		return seis;
-	}
-
 }
