@@ -17,14 +17,18 @@ public class Ejercicio8 {
 		System.out.println();
 		System.out.print("Introduce el nº de la posición del valor que quieras borrar: ");
 		pos = in.nextInt();
+		while((pos < 0)&&(pos > num.length)){
+			System.out.println();
+			System.out.print("Nº introducido invalido, introduce el nº de la posición del valor que quieras borrar: ");
+			pos = in.nextInt();
+		}
 		
 		for(int i = pos; i < num.length-1; i++) {
 			num[i] = num[i+1];
-			if (14 == i) num[i] = 0;
 		}
 		System.out.println();
 		
-		for(int i = 0; i < num.length; i++) {
+		for(int i = 0; i < num.length-1; i++) {
 			System.out.println("Posicion nº " + i + " valor: " + num[i]);
 		}
 		
