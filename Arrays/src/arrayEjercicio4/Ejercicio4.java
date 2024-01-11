@@ -8,18 +8,13 @@ public class Ejercicio4 {
 		String[] n = new String [4];
 		int[] lo = new int [4];
 		
-		nomapell(n);
+		nomApell(n);
 		System.out.println();
 		mostrar(n);
-		System.out.println();
-		longitud(n, lo);
-		System.out.println();
-		for(int i = 0; i < lo.length; i++) {
-			System.out.println("Longitud de la posicion " + i + " es " + lo[i] );
-		}
+		
 	}
 	
-	public static void nomapell(String [] z) {
+	public static void nomApell(String [] z) {
 		Scanner in = new Scanner(System.in);
 		for(int i = 0; i < z.length; i++) {
 			System.out.print("Introduce el nombre y apellidos de la persona numº " + i + ": " );
@@ -29,13 +24,7 @@ public class Ejercicio4 {
 	
 	public static void mostrar(String [] z) {
 		for(int i = 0; i < z.length; i++) {
-			System.out.println("El nombre y apellidos de la posicion " + i + " es " + z[i] );
-		}
-	}
-	
-	public static void longitud(String [] z, int [] x) {
-		for(int i = 0; i < z.length; i++) {
-			x[i] = z[i].length();
+			System.out.println("El nombre y apellidos de la posicion " + i + " es " + z[i] + " y tiene una longitud de " + z[i].length() );
 		}
 	}
 
