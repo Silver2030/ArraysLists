@@ -61,10 +61,10 @@ public class Ejercicio11 {
 		return resp;
 	}
 	
-	public static int codigoLetra(String [] carac, int [] num, char respuChar) {
+	public static int codigoLetra(String [] carac, int [] num, char mensajeResp) {
 		int resp = 0; /* Metodo que identifica el int correpondiente al char dado */
 		for(int i = 0; i < carac.length; i++) {
-			if (carac[i].equals(String.valueOf(respuChar))) resp = num[i];
+			if (carac[i].equals(String.valueOf(mensajeResp))) resp = num[i];
 		}
 		return resp;
 	}

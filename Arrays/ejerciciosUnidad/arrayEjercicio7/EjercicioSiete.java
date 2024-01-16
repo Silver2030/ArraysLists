@@ -13,7 +13,7 @@ public class EjercicioSiete {
 			n[i] = in.nextInt();
 		}
 		System.out.println();
-		for(int i = 8; i >= 0; i--) {
+		for(int i = 9; i >= 0; i--) {
 			System.out.println("Nº" + (i+1) + ": " + n[i]);
 		}
 

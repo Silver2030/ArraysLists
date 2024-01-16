@@ -3,12 +3,17 @@ package arrayEjercicio6;
 public class Ejercicio6 {
 
 	public static void main(String[] args) {
-		int [] resul = new int [10];
+		Boolean [] resul = new Boolean [20];
+		int trueCount = 0, falseCount = 0;
 		for(int i = 0; i < resul.length; i++) {
-			resul[i] = moneda();
+			resul[i] = caraCruz(moneda());
 		}
-		System.out.println("Salio cara un total de " + cara(resul) + " veces");
-		System.out.println("Salio cruz un total de " + cruz(resul) + " veces");
+		for (int i = 0; i < resul.length; i++) {
+		    if (resul[i] == true) trueCount++;
+		    else falseCount++;
+		}
+		System.out.println("Salio cara un total de " + trueCount + " veces");
+		System.out.println("Salio cruz un total de " + falseCount + " veces");
 	}
 	
 	public static int moneda() {
@@ -16,20 +21,9 @@ public class Ejercicio6 {
 		return v;
 	}
 	
-	public static int cara(int [] num) {
-		int cara = 0;
-		for(int i = 0; i < num.length; i++) {
-			if (num[i] == 1) cara++;
-		}
-		return cara;
-	}
-	
-	public static int cruz(int [] num) {
-		int cruz = 0;
-		for(int i = 0; i < num.length; i++) {
-			if (num[i] == 0) cruz++;
-		}
-		return cruz;
+	public static boolean caraCruz(int num) {
+		if (num == 1) return true;
+		return false;
 	}
 
 }
