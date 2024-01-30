@@ -2,20 +2,20 @@ package matriz;
 
 import java.util.Scanner;
 
-public class Matriz {
+public class MatrizNueva {
 
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
-		int [] matriz1 = {};
-		int [] matriz2 = {};
-		int [] matriz3 = {};
+		int [][] matriz1 = {};
+		int [][] matriz2 = {};
+		int [][] matriz3 = {};
 		int columMat1, filasMat1, columMat2, filasMat2;
 		
 		System.out.print("Introduce el número de columnas de la matriz nº1: ");
 		columMat1 = in.nextInt();
 		System.out.print("Introduce el número de filas de la matriz nº1: ");
 		filasMat1 = in.nextInt();
-		matriz1 = new int [columMat1*filasMat1];
+		matriz1 = new int [filasMat1][columMat1];
 		
 		System.out.println();
 		
@@ -23,9 +23,9 @@ public class Matriz {
 		columMat2 = in.nextInt();
 		System.out.print("Introduce el número de filas de la matriz nº2: ");
 		filasMat2 = in.nextInt();
-		matriz2 = new int [columMat2*filasMat2];
+		matriz2 = new int [filasMat2][columMat2];
 		
-		matriz3 = new int [columMat2*filasMat1];
+		matriz3 = new int [filasMat1][columMat2];
 		
 		System.out.println();
 		
@@ -56,55 +56,59 @@ public class Matriz {
 	
 	}
 	
-	public static int[] datosMatriz(int [] matriz, int columnasMatriz, int filasMatriz) {
+	public static int[][] datosMatriz(int [][] matriz, int columnasMatriz, int filasMatriz) {
 		Scanner in = new Scanner(System.in);
-		int contador = 0;
 		for(int j = 0; j < filasMatriz; j++) {
 			for(int i = 0; i < columnasMatriz; i++) {
 				System.out.print("Introduce el valor de la fila nº" + (j+1) + " y columna nº" + (i+1) + ": ");
-				matriz[contador] = in.nextInt();
-				contador++;
+				matriz[j][i] = in.nextInt();
 			}
 		}
 		return matriz;
 	}
 	
-	public static void mostrarMatriz(int [] matriz, int columnasMatriz, int filasMatriz) {
+	public static void mostrarMatriz(int [][] matriz, int columnasMatriz, int filasMatriz) {
 		int contador = 0;
-		for(int i = 0; i < matriz.length; i++) {
-			if(contador == 0) System.out.print("(");
-			contador++;
-			System.out.print(matriz[i]);
-			if(columnasMatriz == contador) {
-				System.out.print(") \n"); 
-				contador = 0;
+		for(int j = 0; j < matriz.length; j++) {
+			for(int i = 0; i < matriz[j].length; i++) {
+				if(contador == 0) System.out.print("(");
+				contador++;
+				System.out.print(matriz[j][i]);
+				if(columnasMatriz == contador) {
+					System.out.print(") \n"); 
+					contador = 0;
+				}
+				else System.out.print(" ");
+				if(i == matriz.length) System.out.println();
 			}
-			else System.out.print(" ");
-			if(i == matriz.length) System.out.println();
 		}
 	}
 	
-	public static void mostrarMatrices(int [] matriz1, int [] matriz2, int columnasMatriz1, int filasMatriz1, int columnasMatriz2, int filasMatriz2) {
+	public static void mostrarMatrices(int [][] matriz1, int [][] matriz2, int columnasMatriz1, int filasMatriz1, int columnasMatriz2, int filasMatriz2) {
 		int contador1 = 0, contador2 = 0;
-		for(int i = 0; i < matriz1.length; i++) {
+		for(int z = 0; z < matriz1.length; z++) {
+			for(int i = 0; i < matriz1[z].length; i++) {
 			if(contador1 == 0) System.out.print("(");
 			contador1++;
-			System.out.print(matriz1[i]);
+			System.out.print(matriz1[z][i]);
 			if(columnasMatriz1 == contador1) { /*Si llega al limite de la columna1 comienza imprimir la misma fila del array2*/
 				System.out.print(")   "); 
 				contador1 = 0; 
-				for(int j = 0; j < columnasMatriz2; j++) {
-					if(j == 0) System.out.print("(");
-					System.out.print(matriz2[j+contador2]);
-					if(columnasMatriz2-1 == j) {
-						System.out.print(") \n"); /*Primera fila de ambas matrices mostrada, procede a saltar de fila y vuelve a la primera matriz*/
-						contador2 = j + contador2 + 1; /*Mantiene valores para cuando reingrese en el for no muestre valores repetidos*/
+				for(int x = 0; x < columnasMatriz2; x++) {
+					for(int j = 0; j < columnasMatriz2; j++) {
+						if(j == 0) System.out.print("(");
+						System.out.print(matriz2[j+contador2]);
+						if(columnasMatriz2-1 == j) {
+							System.out.print(") \n"); /*Primera fila de ambas matrices mostrada, procede a saltar de fila y vuelve a la primera matriz*/
+							contador2 = j + contador2 + 1; /*Mantiene valores para cuando reingrese en el for no muestre valores repetidos*/
+						}
+						else System.out.print(" ");
 					}
-					else System.out.print(" ");
 				}
 			}
 			else System.out.print(" ");
 			if(i == matriz1.length) System.out.println();
+			}
 		}
 	}
 	
