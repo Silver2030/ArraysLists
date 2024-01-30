@@ -10,15 +10,21 @@ public class Ejercicio2 {
 		matriz = cargarMatriz(matriz);
 		System.out.println();
 		mostrarMatriz(matriz);
+		System.out.println();
+		notamayor(matriz);
 		
+	}
+	
+	public static int random() {
+		int v=(int)Math.floor(Math.random()*(10-0+1)+(0));
+		return v;
 	}
 
 	public static int[][] cargarMatriz(int[][] matriz) {
 		Scanner in = new Scanner(System.in);
 		for(int j = 0; j < matriz.length; j++) {
 			for(int i = 0; i < matriz[j].length; i++) {
-				System.out.print("Introduce el valor de la fila nº" + (j+1) + " y columna nº" + (i+1) + ": ");
-				matriz[j][i] = in.nextInt();
+				matriz[j][i] = random();
 				}
 			}
 		return matriz;
@@ -39,6 +45,28 @@ public class Ejercicio2 {
 				if(i == matriz[j].length) System.out.println();
 			}
 		}
+	}
+	
+	public static void notamayor(int[][] matriz) {
+		int max = -1, min = 11, columnaMax = 0, filaMax = 0, columnaMin = 0, filaMin = 0;
+		Scanner in = new Scanner(System.in);
+		for(int j = 0; j < matriz.length; j++) {
+			for(int i = 0; i < matriz[j].length; i++) {
+				if(matriz[j][i] > max) {
+					max = matriz[j][i];
+					filaMax = j+1;
+					columnaMax = i+1;
+				}
+				if(matriz[j][i] < min) {
+					min = matriz[j][i];
+					filaMin = j+1;
+					columnaMin = i+1;
+				}
+			}
+		}
+		System.out.println("La nota mas alta pertenece a la columna Nº"+ columnaMax + " y fila Nº" + filaMax + " y es " + max);
+		System.out.println("La nota mas baja pertenece a la columna Nº"+ columnaMin + " y fila Nº" + filaMin + " y es " + min);
+		
 	}
 }
 
