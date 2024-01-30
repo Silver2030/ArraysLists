@@ -57,7 +57,6 @@ public class Ejercicio5p1 {
 					contador = 0;
 				}
 				else System.out.print(" ");
-				if(i == matriz.length) System.out.println();
 			}
 		}
 	}

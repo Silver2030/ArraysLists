@@ -46,7 +46,6 @@ public class Ejercicio6p1 {
 					contador = 0;
 				}
 				else System.out.print(" ");
-				if(i == matriz[j].length) System.out.println();
 			}
 		}
 	}

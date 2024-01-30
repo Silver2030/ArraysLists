@@ -18,7 +18,7 @@ public class Ejercicio2p1 {
 		Scanner in = new Scanner(System.in);
 		for(int j = 0; j < matriz.length; j++) {
 			for(int i = 0; i < matriz[j].length; i++) {
-				System.out.print("Introduce el valor de la fila nº" + (j+1) + " y columna nº" + (i+1) + ": ");
+				System.out.print("Introduce el valor de la fila nï¿½" + (j+1) + " y columna nï¿½" + (i+1) + ": ");
 				matriz[j][i] = in.nextInt();
 				}
 			}
@@ -33,9 +33,9 @@ public class Ejercicio2p1 {
 				filas[i] = matriz[j][i];
 				}
 			for(int z = 0; z < matriz[j].length; z++) {
-				if (filas[z] == filas[0]) contador++; /*Cada vez que encuentra un número igual suma uno al contador*/
-				if (contador == matriz.length) System.out.println("Los números de la fila Nº" + (j+1) + " son todos iguales"); 
-				/*Si el contador iguala a la cantidad de números en fila entrara al ser todos iguales (*/
+				if (filas[z] == filas[0]) contador++; /*Cada vez que encuentra un nï¿½mero igual suma uno al contador*/
+				if (contador == matriz.length) System.out.println("Los nï¿½meros de la fila Nï¿½" + (j+1) + " son todos iguales"); 
+				/*Si el contador iguala a la cantidad de nï¿½meros en fila entrara al ser todos iguales (*/
 				}
 			contador = 0;
 		}
@@ -53,7 +53,6 @@ public class Ejercicio2p1 {
 					contador = 0;
 				}
 				else System.out.print(" ");
-				if(i == matriz[j].length) System.out.println();
 			}
 		}
 	}
