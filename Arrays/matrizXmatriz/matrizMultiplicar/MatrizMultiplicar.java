@@ -1,8 +1,8 @@
-package matriz;
+package matrizMultiplicar;
 
 import java.util.Scanner;
 
-public class MatrizNueva {
+public class MatrizMultiplicar {
 
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
@@ -11,17 +11,17 @@ public class MatrizNueva {
 		int [][] matriz3 = {};
 		int columMat1, filasMat1, columMat2, filasMat2;
 		
-		System.out.print("Introduce el nï¿½mero de columnas de la matriz nï¿½1: ");
+		System.out.print("Introduce el número de columnas de la matriz nº1: ");
 		columMat1 = in.nextInt();
-		System.out.print("Introduce el nï¿½mero de filas de la matriz nï¿½1: ");
+		System.out.print("Introduce el número de filas de la matriz nº1: ");
 		filasMat1 = in.nextInt();
 		matriz1 = new int [filasMat1][columMat1];
 		
 		System.out.println();
 		
-		System.out.print("Introduce el nï¿½mero de columnas de la matriz nï¿½2: ");
+		System.out.print("Introduce el número de columnas de la matriz nº2: ");
 		columMat2 = in.nextInt();
-		System.out.print("Introduce el nï¿½mero de filas de la matriz nï¿½2: ");
+		System.out.print("Introduce el número de filas de la matriz nº2: ");
 		filasMat2 = in.nextInt();
 		matriz2 = new int [filasMat2][columMat2];
 		
@@ -54,8 +54,8 @@ public class MatrizNueva {
 		Scanner in = new Scanner(System.in);
 		for(int j = 0; j < matriz.length; j++) {
 			for(int i = 0; i < matriz[j].length; i++) {
-				System.out.print("Introduce el valor de la fila nï¿½" + (j+1) + " y columna nï¿½" + (i+1) + ": ");
-				matriz[j][i] = in.nextInt();
+				System.out.print("Introduce el valor de la fila nº" + (j+1) + " y columna nº" + (i+1) + ": ");
+				matriz[j][i] = in.nextInt(); /*Doble for que recorre todos los valores del array 2d para darle valor a cada posición*/
 			}
 		}
 		return matriz;

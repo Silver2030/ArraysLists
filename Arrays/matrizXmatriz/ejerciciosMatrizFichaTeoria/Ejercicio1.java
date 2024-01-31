@@ -1,4 +1,4 @@
-package matriz;
+package ejerciciosMatrizFichaTeoria;
 
 import java.util.Scanner;
 

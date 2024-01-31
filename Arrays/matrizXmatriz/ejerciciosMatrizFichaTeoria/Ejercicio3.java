@@ -1,20 +1,27 @@
-package matriz;
+package ejerciciosMatrizFichaTeoria;
 
-public class Ejercicio9p1 {
+import java.util.Scanner;
+
+public class Ejercicio3 {
 
 	public static void main(String[] args) {
-		int [][] matriz = new int [10][10];
-
+		int [][] matriz = new int [6][10];
+		
 		matriz = cargarMatriz(matriz); /*Genera los datos dentro de la matriz*/
 		System.out.println();
 		mostrarMatriz(matriz); /*Muestra los datos dentro de la matriz de forma matricial*/
+
+	}
+	
+	public static int random() {
+		int v=(int)Math.floor(Math.random()*(1000-0+1)+(0));
+		return v;
 	}
 	
 	public static int[][] cargarMatriz(int[][] matriz) {
 		for(int j = 0; j < matriz.length; j++) {
 			for(int i = 0; i < matriz[j].length; i++) {
-				if(j == i) matriz[j][i] = 1; /*Da valor de 1 en caso de que tanto la columna como fila sean el mismo número*/
-				else matriz[j][i] = 0; /*De no cumplirse lo de arriba le dara un valor de 0*/
+				matriz[j][i] = random(); /*Da un valor aleatorio entre 0 y 1000 llamando al metodo random (0 y 1000 incluidos)*/
 				}
 			}
 		return matriz;

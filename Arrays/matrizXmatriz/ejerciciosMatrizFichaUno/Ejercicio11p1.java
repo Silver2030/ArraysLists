@@ -1,4 +1,4 @@
-package matriz;
+package ejerciciosMatrizFichaUno;
 
 public class Ejercicio11p1 {
 
