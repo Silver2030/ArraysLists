@@ -1,27 +1,58 @@
 package peliculas;
 
+import java.util.Scanner;
+
 public class Pelicula {
 	private int codigo;
 	private String titulo;
 	private String productora;
-	private int añoEstreno;
+	private int aÃ±oEstreno;
 	private int numEspectadores;
 	
 	public Pelicula() {
 		super();
 	}
 
-	public Pelicula(int codigo, String titulo, String productora, int añoEstreno, int numEspectadores) {
+	public Pelicula(int codigo, String titulo, String productora, int aÃ±oEstreno, int numEspectadores) {
 		super();
 		this.codigo = codigo;
 		this.titulo = titulo;
 		this.productora = productora;
-		this.añoEstreno = añoEstreno;
+		this.aÃ±oEstreno = aÃ±oEstreno;
 		this.numEspectadores = numEspectadores;
 	}
-	
-	
 
+	public void actualizarDatos() {
+		Scanner in = new Scanner(System.in);
+		/* Actualizar los datos del array exceptuando el codigo */
+		System.out.print("Introduce el titulo de la pelicula: ");
+		this.titulo = in.nextLine();
+		
+		System.out.print("Introduce la productora pelicula: ");
+		this.productora = in.nextLine();
+		
+		System.out.print("Introduce el aÃ±o de estreno de la pelicula: ");
+		this.aÃ±oEstreno = in.nextInt();
+		
+		System.out.print("Introduce los espectadores totales de la pelicula: ");
+		this.numEspectadores = in.nextInt();
+	}
+	
+	public int compararCodigos(int codigo, int indice) {
+		int indiceDevolver = -1;
+		/* Comparo el codigo introducido por teclado con los del array y guardo el indice correspondiente en caso de que sean iguales */
+		if(codigo == this.codigo) indiceDevolver = indice;
+		
+		return indiceDevolver;
+	}
+	
+	public static Pelicula[] borrarPelicula(Pelicula[] peliculas, int indiceBorrar) {
+		Pelicula[] nuevoArray = new Pelicula[peliculas.length - 1];
+        System.arraycopy(peliculas, 0, nuevoArray, 0, indiceBorrar); /* Creo un array de apoyo copiando el original exceptuando el indice del cual debo eliminar */
+        System.arraycopy(peliculas, indiceBorrar + 1, nuevoArray, indiceBorrar, peliculas.length - indiceBorrar - 1);
+        return nuevoArray;
+	}
+	
 	public int getCodigo() {
 		return codigo;
 	}
@@ -46,12 +77,12 @@ public class Pelicula {
 		this.productora = productora;
 	}
 
-	public int getAñoEstreno() {
-		return añoEstreno;
+	public int getAÃ±oEstreno() {
+		return aÃ±oEstreno;
 	}
 
-	public void setAñoEstreno(int añoEstreno) {
-		this.añoEstreno = añoEstreno;
+	public void setAÃ±oEstreno(int aÃ±oEstreno) {
+		this.aÃ±oEstreno = aÃ±oEstreno;
 	}
 
 	public int getNumEspectadores() {
@@ -64,8 +95,10 @@ public class Pelicula {
 
 	@Override
 	public String toString() {
-		return "Pelicula [codigo=" + codigo + ", titulo=" + titulo + ", productora=" + productora + ", añoEstreno="
-				+ añoEstreno + ", numEspectadores=" + numEspectadores + "]";
+		return "Titulo: " + titulo + 
+			"\n Productora: " + productora + 
+			"\n Espectadores: " + numEspectadores +
+			"\n Estrellas: ";
 	}
 	
 }
