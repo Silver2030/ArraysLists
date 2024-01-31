@@ -48,9 +48,9 @@ public class Pelicula {
 	
 	public static Pelicula[] borrarPelicula(Pelicula[] peliculas, int indiceBorrar) {
 		Pelicula[] nuevoArray = new Pelicula[peliculas.length - 1];
-        System.arraycopy(peliculas, 0, nuevoArray, 0, indiceBorrar); /* Creo un array de apoyo copiando el original exceptuando el indice del cual debo eliminar */
-        System.arraycopy(peliculas, indiceBorrar + 1, nuevoArray, indiceBorrar, peliculas.length - indiceBorrar - 1);
-        return nuevoArray;
+		System.arraycopy(peliculas, 0, nuevoArray, 0, indiceBorrar); /* Creo un array de apoyo copiando el original exceptuando el indice del cual debo eliminar */
+		System.arraycopy(peliculas, indiceBorrar + 1, nuevoArray, indiceBorrar, peliculas.length - indiceBorrar - 1);
+		return nuevoArray;
 	}
 	
 	public int getCodigo() {
