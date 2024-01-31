@@ -5,7 +5,7 @@ public class Ejercicio11p1 {
 	public static void main(String[] args) {
 		int alumnosTotal = 0;
 		int [][] matriz = new int [6][5];
-		String [] modulos = {"ProgramaciÃ³n", "Lenguaje de Marcas", "Sistemas Informaticos", "Entornos de Desarrollo", "Bases de Datos"};
+		String [] modulos = {"Programación", "Lenguaje de Marcas", "Sistemas Informaticos", "Entornos de Desarrollo", "Bases de Datos"};
 		matriz = cargarMatriz(matriz); /*Llama al modulo que genera los datos dentro de la matriz*/
 		System.out.println();
 		alumnosTotal = alumnosCentro(matriz); /*Llama al modulo que suma el total de valores dentro del array*/
@@ -59,7 +59,7 @@ public class Ejercicio11p1 {
 			for(int i = 0; i < matriz[j].length; i++) {
 				alumnosGrupo += matriz[j][i];
 			}	
-			System.out.println("El grupo NÂº" + j + " tiene un total de " + alumnosGrupo + " alumnos");
+			System.out.println("El grupo Nº" + j + " tiene un total de " + alumnosGrupo + " alumnos");
 			alumnosGrupo = 0;
 		}
 	}
@@ -77,7 +77,7 @@ public class Ejercicio11p1 {
 			}
 			alumnosModulo = 0;
 		}
-		System.out.println("El modulo con mayor nÃºmero de alumnos es el de " + modulo + " con un total de " + max + " alumnos");
+		System.out.println("El modulo con mayor número de alumnos es el de " + modulo + " con un total de " + max + " alumnos");
 	}
 
 }

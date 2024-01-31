@@ -50,25 +50,19 @@ public class Ejercicio1p1 {
 	}
 	
 	public static int[] filaSuma(int [][] matriz, int [] filas) {
-		int filaSuma = 0;
 		for(int j = 0; j < matriz.length; j++) {
 			for(int i = 0; i < matriz[j].length; i++) {
-				filaSuma += matriz[j][i];
+				filas[j] += matriz[j][i];
 				}
-			filas[j] = filaSuma;
-			filaSuma = 0;
 			}
 		return filas;
 	}
 	
 	public static int[] columnaSuma(int [][] matriz, int [] columnas) {
-		int columnaSuma = 0;
 		for(int j = 0; j < matriz[0].length; j++) {
 			for(int i = 0; i < matriz.length; i++) {
-				columnaSuma += matriz[i][j];
+				columnas[j] += matriz[i][j];
 				}
-			columnas[j] = columnaSuma;
-			columnaSuma = 0;
 			}
 		return columnas;
 	}

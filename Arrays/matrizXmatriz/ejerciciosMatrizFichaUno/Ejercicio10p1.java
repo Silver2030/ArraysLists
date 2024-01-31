@@ -47,22 +47,20 @@ public class Ejercicio10p1 {
 	
 	public static void sumaDiagonalPrincipal(int [][] matriz) {
 	int sumaDigPrincp = 0;
-		for(int j = 0; j < matriz.length; j++) {
-			for(int i = 0; i < matriz[j].length; i++) {
-				if(i == j) sumaDigPrincp += matriz[j][i]; /*Acumula todas los valores cuya columna y fila compartan el mismo número*/
+			for(int i = 0; i < matriz[0].length; i++) {
+				sumaDigPrincp += matriz[i][i]; /*Acumula todas los valores cuya columna y fila compartan el mismo número*/
 			}		
-		}
 		System.out.println("La suma de los valores de la diagonal principal da como resultado " + sumaDigPrincp);
 	}
 	
 	public static void sumaDiagonalSecundaria(int [][] matriz) {
 		int sumaDigSecund = 0;
-			for(int j = 0; j < matriz.length; j++) {
-				for(int i = 0; i < matriz[j].length; i++) {
-					if(i + j == (matriz[j].length-1)) sumaDigSecund += matriz[j][i]; /*Acumula todas los valores cuya columna y fila sumada den como resultado el número de columnas
+		int j = matriz[0].length-1;
+				for(int i = 0; i < matriz[0].length; i++) {
+					sumaDigSecund += matriz[i][j]; /*Acumula todas los valores cuya columna y fila sumada den como resultado el número de columnas
 					de la matriz (-1)*/
+					j--;
 				}		
-			}
 			System.out.println("La suma de los valores de la diagonal secundaria da como resultado " + sumaDigSecund);
 		}
 

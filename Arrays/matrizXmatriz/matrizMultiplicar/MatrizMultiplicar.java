@@ -32,18 +32,18 @@ public class MatrizMultiplicar {
 		if(columMat1 != filasMat2) System.out.print("Dimensiones introducidas invalidas para realizar un producto, vuelva a intentarlo.");
 		else {
 			
-			System.out.println("Matriz Nï¿½1) " + filasMat1 + "*" + columMat1 + "\n");
+			System.out.println("Matriz Nº1) " + filasMat1 + "*" + columMat1 + "\n");
 			matriz1 = datosMatriz(matriz1); /*Metodo con el que se ingresan los datos de la primera matriz*/
 			System.out.println();
 			mostrarMatriz(matriz1); /*Metodo que muestra la primera matriz*/
 			System.out.println();
 			
-			System.out.println("Matriz Nï¿½2) " + filasMat2 + "*" + columMat2 + "\n");
+			System.out.println("Matriz Nº2) " + filasMat2 + "*" + columMat2 + "\n");
 			matriz2 = datosMatriz(matriz2); /*Metodo con el que se ingresan los datos de la segunda matriz*/
 			System.out.println();
 			mostrarMatriz(matriz2); /*Metodo que muestra la segunda matriz*/
 			System.out.println();
-			matriz3 = multiplicacionMatrices(matriz1, matriz2, matriz3); /*Metodo genera datos de la matriz3 multiplicando la 1 y la 2*/
+			multiplicacionMatrices(matriz1, matriz2, matriz3); /*Metodo genera datos de la matriz3 multiplicando la 1 y la 2*/
 			System.out.println("Resultado multiplicacion matriz1 * matriz2 \n");
 			mostrarMatriz(matriz3); /*Metodo que muestra la tercera matriz*/
 		}
@@ -77,7 +77,7 @@ public class MatrizMultiplicar {
 		}
 	}
 	
-	public static int[][] multiplicacionMatrices(int [][] matriz1, int [][] matriz2, int[][] matriz3) {
+	public static void multiplicacionMatrices(int [][] matriz1, int [][] matriz2, int[][] matriz3) {
 		int resultados = 0, contador = 0;
 		for(int x = 0; x < matriz3[0].length; x++) {
 			for(int j = 0; j < matriz1[0].length; j++) {
@@ -90,7 +90,6 @@ public class MatrizMultiplicar {
 			contador++;
 		}
 		
-		return matriz3;
 	}
 	
 	
