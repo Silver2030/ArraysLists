@@ -6,19 +6,19 @@ public class Pelicula {
 	private int codigo;
 	private String titulo;
 	private String productora;
-	private int añoEstreno;
+	private int a�oEstreno;
 	private int numEspectadores;
 	
 	public Pelicula() {
 		super();
 	}
 
-	public Pelicula(int codigo, String titulo, String productora, int añoEstreno, int numEspectadores) {
+	public Pelicula(int codigo, String titulo, String productora, int a�oEstreno, int numEspectadores) {
 		super();
 		this.codigo = codigo;
 		this.titulo = titulo;
 		this.productora = productora;
-		this.añoEstreno = añoEstreno;
+		this.a�oEstreno = a�oEstreno;
 		this.numEspectadores = numEspectadores;
 	}
 
@@ -32,7 +32,7 @@ public class Pelicula {
 		this.productora = in.nextLine();
 		
 		System.out.print("Introduce el año de estreno de la pelicula: ");
-		this.añoEstreno = in.nextInt();
+		this.a�oEstreno = in.nextInt();
 		
 		System.out.print("Introduce los espectadores totales de la pelicula: ");
 		this.numEspectadores = in.nextInt();
@@ -77,12 +77,12 @@ public class Pelicula {
 		this.productora = productora;
 	}
 
-	public int getAñoEstreno() {
-		return añoEstreno;
+	public int geta�oEstreno() {
+		return a�oEstreno;
 	}
 
-	public void setAñoEstreno(int añoEstreno) {
-		this.añoEstreno = añoEstreno;
+	public void seta�oEstreno(int a�oEstreno) {
+		this.a�oEstreno = a�oEstreno;
 	}
 
 	public int getNumEspectadores() {

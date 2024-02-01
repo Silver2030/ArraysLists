@@ -1,4 +1,4 @@
-package peliculas;
+package peliculas2;
 
 import java.util.Scanner;
 
@@ -14,9 +14,10 @@ public class TestPeliculas {
 				new Pelicula(987, "Coco", "Walt Disney Studios", 2017, 2000000),
 				new Pelicula(444, "Logan", "20th Century Fox", 2017, 500000)
 		};
+		ArrayPeliculas lla = new ArrayPeliculas(obj);
 		char resp = 'A', modificarSeguir = 'S', programaSeguir = 'S', borrarSeguir = 'S';
 		int ingresos[] = new int [6];
-		int codigo = 0, indice = -1; 
+		int codigo = 0, indice = -1, borrados = 0; 
 		
 		do{
 			System.out.println("A: Modificar datos Pelicula");
@@ -37,19 +38,14 @@ public class TestPeliculas {
 					System.out.print("Introduce el código de la película que quieras modificar: ");
 					codigo = in.nextInt();
 					
-					for(int i = 0; i < obj.length; i++) {
-						indice = obj[i].compararCodigos(codigo, i); /* Comparador del codigo introducido con aquellos registrados */
-						if(indice != -1) {
-							break; /* No seguro si es valido usar break */
-						}
-					}
+					indice = lla.compararCodigos(codigo); /* Comparador del codigo introducido con aquellos registrados */
 					
 					System.out.println();
 					
 					if(indice == -1) {
 						System.out.println("Codigo no encontrado/incorrecto");
 					}else {
-						obj[indice].actualizarDatos(); /* Al encontrar un codigo en el array igual al introducido permite modificar los datos de este elemento excepto codigo */
+						lla.actualizarDatos(indice); /* Al encontrar un codigo en el array igual al introducido permite modificar los datos de este elemento excepto codigo */
 					}
 					System.out.println();
 					System.out.print("Desea continuar modificando peliculas (S/N)?: "); /* Validar si se quieren modificar mas peliculas o volver al menu */
@@ -68,19 +64,15 @@ public class TestPeliculas {
 					System.out.print("Introduce el código de la película que quieras borrar: "); /* Comparador del codigo introducido con aquellos registrados */
 					codigo = in.nextInt();
 					
-					for(int i = 0; i < obj.length; i++) {
-						indice = obj[i].compararCodigos(codigo, i);
-						if(indice != -1) {
-							break; /* No seguro si es valido usar break */
-						}
-					}
+					indice = lla.compararCodigos(codigo); /* Comparador del codigo introducido con aquellos registrados */
 	
 					System.out.println();
 					
 					if(indice == -1) {
 						System.out.println("Codigo no encontrado/incorrecto");
 					}else {
-						obj = Pelicula.borrarPelicula(obj, indice); /* Al encontrar un codigo en el array igual al introducido actualiza el array excluyendo a ese codigo y sus elementos */
+						lla.borrarPelicula(indice); /* Al encontrar un codigo en el array igual al introducido actualiza el array excluyendo a ese codigo y sus elementos */
+						borrados++;
 					}
 					
 					System.out.print("Desea continuar borrando peliculas (S/N)?: "); /* Validar si se quieren modificar mas peliculas o volver al menu */
@@ -95,12 +87,12 @@ public class TestPeliculas {
 				}
 			borrarSeguir = 'S'; /* Permitir el reingreso en caso de volver al metodo borrar mas tarde */
 			}else {
-				cargarIngresos(obj, ingresos);
-				for(int i = 0; i < obj.length; i++) {
-					System.out.println(obj[i].toString() + estrellas(obj[i].getNumEspectadores()) +
-							"\n Ingresos: " + ingresos[i] + "â‚¬"+ "\n"); /* Muestra */
+				cargarIngresos(lla.getPeliculas(), ingresos);
+				for(int i = 0; i < lla.getPeliculas().length - borrados; i++) {
+					System.out.println(lla.getPeliculas()[i].toString() + estrellas(lla.getPeliculas()[i].getNumEspectadores()) +
+							"\n Ingresos: " + ingresos[i] + "€"+ "\n"); /* Muestra */
 				}
-				System.out.println("La pelicula con mayores ingresos es " + obj[ingresoMayor(ingresos)].getTitulo() + " con un total de " + ingresos[ingresoMayor(ingresos)] + "â‚¬ \n");
+				System.out.println("La pelicula con mayores ingresos es " + lla.getPeliculas()[ingresoMayor(ingresos, borrados)].getTitulo() + " con un total de " + ingresos[ingresoMayor(ingresos, borrados)] + "€ \n");
 			}
 			System.out.print("Quiere continuar con el programa (S/N)?: "); /* Confirmar si acabar el programa o no */
 			programaSeguir = Character.toUpperCase(in.next().charAt(0));
@@ -134,9 +126,9 @@ public class TestPeliculas {
 		}
 	}
 	
-	public static int ingresoMayor(int []ingresos) {
+	public static int ingresoMayor(int []ingresos, int borrados) {
 		int indice = 0, ingresoMayor = -1;
-		for(int i = 0; i < ingresos.length; i++) {
+		for(int i = 0; i < ingresos.length - borrados; i++) {
 			if(ingresos[i] > ingresoMayor) {
 				indice = i;
 				ingresoMayor = ingresos[i];
