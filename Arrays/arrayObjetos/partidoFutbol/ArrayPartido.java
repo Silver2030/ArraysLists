@@ -1,6 +1,9 @@
 package partidoFutbol;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Iterator;
 
 public class ArrayPartido {
 
@@ -22,7 +25,7 @@ public class ArrayPartido {
 			Partido partido4 = new Partido("Zaragoza", "Valencia", 2, 2);
 			Partido partido5 = new Partido("Mallorca", "Deportivo", 0, 1);
 			Partido partido6 = new Partido("Deportivo", "Atletico Madrid", 1, 0);
-					
+			// Genera y añade los datos al arraylist
 			partido.add(partido1);
 			partido.add(partido2);
 			partido.add(partido3);
@@ -33,7 +36,7 @@ public class ArrayPartido {
 		
 		public void localesGanadores() {
 			System.out.println("EQUIPOS LOCALES GANADORES");
-			System.out.println();
+			System.out.println(); // Muestra todo equipo local que tenga mayor cantidad de goles que el visitante
 			for(int i = 0; i < this.partido.size(); i++) {
 				if(this.partido.get(i).getGolesLocal() > this.partido.get(i).getGolesVisitante()) {
 					System.out.println(this.partido.get(i).getEquipoLocal());
@@ -43,7 +46,7 @@ public class ArrayPartido {
 		
 		public void empates() {
 			System.out.println("PARTIDOS EMPATADOS");
-			System.out.println();
+			System.out.println(); // Muestra todo partido que tenga mismos goles 
 			for(int i = 0; i < this.partido.size(); i++) {
 				if(this.partido.get(i).getGolesLocal() == this.partido.get(i).getGolesVisitante()) {
 					System.out.println(this.partido.get(i).getEquipoLocal()+ "\t" + this.partido.get(i).getEquipoVisitante() + "\n" + 
@@ -54,49 +57,49 @@ public class ArrayPartido {
 		
 		public void clasificacion() {
 			String[] equipos = {"Valencia", "Real Betis", "Dep. Osasuna", "Atletico Madrid", "Zaragoza", "Mallorca", "Deportivo"};
-			int[] puntos = new int[7];
+			Integer[] puntos = {0, 0, 0, 0, 0, 0, 0};
 			for(int i = 0; i < this.partido.size(); i++) {
 				if(this.partido.get(i).getGolesLocal() > this.partido.get(i).getGolesVisitante()) {
-					for(int j = 0; j < equipos.length; j++) {
+					for(int j = 0; j < equipos.length; j++) { // Busca todo local ganador y procede a dar puntos a su posicion en el array
 						if(this.partido.get(i).getEquipoLocal().equals(equipos[j])) puntos[j] += 3;
 					}
 				}
 				else if(this.partido.get(i).getGolesLocal() < this.partido.get(i).getGolesVisitante()) {
-					for(int j = 0; j < equipos.length; j++) {
+					for(int j = 0; j < equipos.length; j++) { // Busca todo local visitante y procede a dar puntos a su posicion en el array
 						if(this.partido.get(i).getEquipoVisitante().equals(equipos[j])) puntos[j] += 3;
 					}
 				}
 				else {
-					for(int j = 0; j < equipos.length; j++) {
+					for(int j = 0; j < equipos.length; j++) { // Busca todo empate y procede a dar puntos a ambas posiciones en el array
 						if(this.partido.get(i).getEquipoVisitante().equals(equipos[j])||this.partido.get(i).getEquipoLocal().equals(equipos[j])) 
 							puntos[j] += 1;
 					}
 				}
 			}
 			
-			Ordenar(equipos, puntos);
+			Ordenar(equipos, puntos); // Ordena de mayor a menor, metodo burbuja
 	        
-			listaClasificacion(equipos, puntos);
+			listaClasificacion(equipos, puntos); // Muestra la clasificacion ya ordenada
 		}
 		
-		public void Ordenar(String[] equipos, int[] puntos) {
-			for(int i=0; i < puntos.length-1; i++){
-	        	int auxInt = 0;
-	        	String auxString = "";
-	               for(int j=0; j < (puntos.length-1-i); j++){ 
-	                    if(puntos[j] < puntos[j+1]){ 
-	                    		auxInt = puntos[j];                
-	                            puntos[j] = puntos[j+1];          
-	                            puntos[j+1] = auxInt;
-	                            auxString = equipos[j];
-	                            equipos[j] = equipos[j + 1];
-	                            equipos[j+1] = auxString;
-	                     }   
-	               }
-	         }
+		public void Ordenar(String[] equipos, Integer[] puntos) {
+			int auxInt = 0;
+			String auxString = "";
+            for(int i=0; i < puntos.length-1; i++){
+                for(int j=0; j < (puntos.length-1-i); j++){  
+                     if(puntos[j] < puntos[j+1]){  
+                    	 auxInt = puntos[j];                 
+                    	 puntos[j] = puntos[j+1];           
+                    	 puntos[j+1] = auxInt;
+                    	 auxString = equipos[j];                 
+                    	 equipos[j] = equipos[j+1];           
+                    	 equipos[j+1] = auxString;
+                      }    
+                }
+           }
 		}
 		
-		public void listaClasificacion(String[] equipos, int[] puntos) {
+		public void listaClasificacion(String[] equipos, Integer[] puntos) {
 			System.out.println("Equipo" + "\t\t" + "Puntos");
 	        System.out.println("----------------------");
 	        for(int i=0; i < puntos.length; i++){
@@ -104,11 +107,20 @@ public class ArrayPartido {
 	        }
 		}
 		
-		public void eliminarNoEmpates() {
-			for(int i = 0; i < this.partido.size(); i++) {
-				if(this.partido.get(i).getGolesLocal() != this.partido.get(i).getGolesVisitante()) {
-					this.partido.remove(i);
+		public void eliminarNoEmpates() { 
+			Iterator<Partido> it = this.partido.iterator();
+			
+			while(it.hasNext()) {
+				Partido i = it.next();
+				if(i.getGolesLocal() != i.getGolesVisitante()) {
+					it.remove();
 				}
+			}
+		}
+		
+		public void mostrarPartidos() { // Muestra todos los partidos que contenga el arraylist
+			for(int i = 0; i < this.partido.size(); i++) {
+				System.out.println(this.partido.get(i));
 			}
 		}
 
