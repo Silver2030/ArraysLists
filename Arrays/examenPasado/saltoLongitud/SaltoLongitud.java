@@ -83,7 +83,6 @@ public class SaltoLongitud {
 			
 			for(int i = 0; i < saltosMarca[aux].length; i++) {
 				media += saltosMarca[aux][i]; 
-				System.out.println(media);
 			}
 			
 			media = media / saltosMarca[aux].length;

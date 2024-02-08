@@ -3,7 +3,10 @@ package partidoFutbol;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class ArrayPartido {
 
@@ -25,7 +28,7 @@ public class ArrayPartido {
 			Partido partido4 = new Partido("Zaragoza", "Valencia", 2, 2);
 			Partido partido5 = new Partido("Mallorca", "Deportivo", 0, 1);
 			Partido partido6 = new Partido("Deportivo", "Atletico Madrid", 1, 0);
-			// Genera y añade los datos al arraylist
+			// Genera y aï¿½ade los datos al arraylist
 			partido.add(partido1);
 			partido.add(partido2);
 			partido.add(partido3);
@@ -85,16 +88,16 @@ public class ArrayPartido {
 		public void Ordenar(String[] equipos, Integer[] puntos) {
 			int auxInt = 0;
 			String auxString = "";
-            for(int i=0; i < puntos.length-1; i++){
-                for(int j=0; j < (puntos.length-1-i); j++){  
-                     if(puntos[j] < puntos[j+1]){  
-                    	 auxInt = puntos[j];                 
-                    	 puntos[j] = puntos[j+1];           
-                    	 puntos[j+1] = auxInt;
-                    	 auxString = equipos[j];                 
-                    	 equipos[j] = equipos[j+1];           
-                    	 equipos[j+1] = auxString;
-                      }    
+			for(int i=0; i < puntos.length-1; i++){
+                for(int j=0; j < (puntos.length-1-i); j++){
+                     if(puntos[j] < puntos[j+1]){
+                    	auxInt = puntos[j];
+                    	puntos[j] = puntos[j+1];
+                    	puntos[j+1] = auxInt;
+                    	auxString = equipos[j];
+                    	equipos[j] = equipos[j+1];
+                    	equipos[j+1] = auxString;
+                      }
                 }
            }
 		}

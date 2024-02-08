@@ -1,7 +1,7 @@
 package hotel;
 
 public class Hotel {
-	private int numHabitación;
+	private int numHabitacion;
 	private String nombre;
 	private int diasEstancia;
 	private String tipoHabitacion;
@@ -10,20 +10,20 @@ public class Hotel {
 		super();
 	}
 
-	public Hotel(int numHabitación, String nombre, int diasEstancia, String tipoHabitacion) {
+	public Hotel(int numHabitacion, String nombre, int diasEstancia, String tipoHabitacion) {
 		super();
-		this.numHabitación = numHabitación;
+		this.numHabitacion = numHabitacion;
 		this.nombre = nombre;
 		this.diasEstancia = diasEstancia;
 		this.tipoHabitacion = tipoHabitacion;
 	}
 
-	public int getNumHabitación() {
-		return numHabitación;
+	public int getnumHabitacion() {
+		return numHabitacion;
 	}
 
-	public void setNumHabitación(int numHabitación) {
-		this.numHabitación = numHabitación;
+	public void setnumHabitacion(int numHabitacion) {
+		this.numHabitacion = numHabitacion;
 	}
 
 	public String getNombre() {
@@ -53,11 +53,11 @@ public class Hotel {
 	@Override
 	public String toString() {
 		return "HOTEL \n" + 
-				"Número de habitación: " + numHabitación + "\n" +
-				"Tipo habitación: " + tipoHabitacion + "\n" +
+				"Nï¿½mero de habitaciï¿½n: " + numHabitacion + "\n" +
+				"Tipo habitaciï¿½n: " + tipoHabitacion + "\n" +
 				"Cliente: " + nombre + "\n" +
 				"Num. Dias: " + diasEstancia + "\n" +
-				"Precio Hab/día: ";
+				"Precio Hab/dï¿½a: ";
 	}
 
 }

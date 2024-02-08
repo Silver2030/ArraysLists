@@ -34,8 +34,8 @@ public class ArrayPeliculas {
 		System.out.print("Introduce la productora pelicula: ");
 		peliculas[indice].setProductora(in.nextLine());
 		
-		System.out.print("Introduce el año de estreno de la pelicula: ");
-		peliculas[indice].setañoEstreno(in.nextInt());
+		System.out.print("Introduce el aï¿½o de estreno de la pelicula: ");
+		peliculas[indice].setfechaEstreno(in.nextInt());
 		
 		System.out.print("Introduce los espectadores totales de la pelicula: ");
 		peliculas[indice].setNumEspectadores(in.nextInt());

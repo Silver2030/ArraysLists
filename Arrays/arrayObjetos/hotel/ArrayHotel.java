@@ -21,19 +21,19 @@ public class ArrayHotel {
 	}
 	
 	public void numHabitacion(int indice, int numHab) {
-		this.hotel[indice].setNumHabitación(numHab); // Seteo el valor de "numHabitacion"
+		this.hotel[indice].setnumHabitacion(numHab); // Seteo el valor de "numHabitacion"
 	}
 	
 	public void pedirDatos(int indice) {
 		Scanner in = new Scanner(System.in);
 		// Solicito los datos de los atributos y los seteo
-		System.out.print("Introduce el tipo de habitación que deseas: ");
+		System.out.print("Introduce el tipo de habitaciï¿½n que deseas: ");
 		this.hotel[indice].setTipoHabitacion(in.nextLine().toUpperCase());
 		
 		System.out.print("Introduce nombre y apellido: ");
 		this.hotel[indice].setNombre(in.nextLine());
 		
-		System.out.print("Introduce la duración de la estancia: ");
+		System.out.print("Introduce la duraciï¿½n de la estancia: ");
 		this.hotel[indice].setDiasEstancia(in.nextInt());
 		
 	}
