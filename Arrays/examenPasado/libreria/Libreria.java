@@ -58,7 +58,7 @@ public class Libreria {
 		return "ISBN: " + isbn + "\n" +
 				"Fecha publicacion: " + fechaPub + "\n" +
 				"Precio version base: " + precioBase + "\n" +
-				"Precio version premiun: " + df.format(precioPremiun) + "\n";
+				"Precio version deluxe: " + df.format(precioPremiun) + "\n";
 	}
 
 }

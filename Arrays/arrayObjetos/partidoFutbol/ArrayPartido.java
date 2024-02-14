@@ -60,7 +60,7 @@ public class ArrayPartido {
 		
 		public void clasificacion() {
 			String[] equipos = {"Valencia", "Real Betis", "Dep. Osasuna", "Atletico Madrid", "Zaragoza", "Mallorca", "Deportivo"};
-			Integer[] puntos = {0, 0, 0, 0, 0, 0, 0};
+			int[] puntos = {0, 0, 0, 0, 0, 0, 0};
 			for(int i = 0; i < this.partido.size(); i++) {
 				if(this.partido.get(i).getGolesLocal() > this.partido.get(i).getGolesVisitante()) {
 					for(int j = 0; j < equipos.length; j++) { // Busca todo local ganador y procede a dar puntos a su posicion en el array
@@ -80,15 +80,27 @@ public class ArrayPartido {
 				}
 			}
 			
-			Ordenar(equipos, puntos); // Ordena de mayor a menor, metodo burbuja
-	        
-			listaClasificacion(equipos, puntos); // Muestra la clasificacion ya ordenada
+			tabla(equipos, puntos); // Ordena de mayor a menor, metodo burbuja
 		}
 		
-		public void Ordenar(String[] equipos, Integer[] puntos) {
+		public void tabla(String[] equipos, int[] puntos) {
 			int auxInt = 0;
 			String auxString = "";
-			for(int i=0; i < puntos.length-1; i++){
+			int [] puntosOrd = puntos;
+			Integer[] posiciones = new Integer[puntos.length];
+			for(int i = 0; i < puntos.length; i++) {
+				posiciones[i] = i;
+			}
+			
+			Arrays.sort(posiciones, (a, b) -> Integer.compare(puntos[b], puntos[a]));
+			
+			System.out.println("Equipo" + "\t\t" + "Puntos");
+	        System.out.println("----------------------");
+			for(int j = 0; j < equipos.length; j++) {
+				listaClasificacion(equipos[posiciones[j]], puntosOrd[posiciones[j]]);
+			}
+			
+			/*for(int i=0; i < puntos.length-1; i++){
                 for(int j=0; j < (puntos.length-1-i); j++){
                      if(puntos[j] < puntos[j+1]){
                     	auxInt = puntos[j];
@@ -99,15 +111,11 @@ public class ArrayPartido {
                     	equipos[j+1] = auxString;
                       }
                 }
-           }
+           }*/
 		}
 		
-		public void listaClasificacion(String[] equipos, Integer[] puntos) {
-			System.out.println("Equipo" + "\t\t" + "Puntos");
-	        System.out.println("----------------------");
-	        for(int i=0; i < puntos.length; i++){
-	        	System.out.println(equipos[i] + "\t" + puntos[i]);
-	        }
+		public void listaClasificacion(String equipos, int puntos) {
+	        	System.out.println(equipos + "\t" + puntos);
 		}
 		
 		public void eliminarNoEmpates() { 

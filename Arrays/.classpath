@@ -6,6 +6,6 @@
 	<classpathentry kind="src" path="arrayObjetos"/>
 	<classpathentry kind="src" path="examenPasado"/>
 	<classpathentry kind="src" path="ejerciciosMatriz"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jre"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-16"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

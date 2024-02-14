@@ -11,14 +11,40 @@ public class SaltoLongitud {
 		String [] fechas = {"M_2020", "M_2021", "M_2022"};
 		String [] participante = {"D111", "D222", "D333", "D444", "D555"};
 		String dorsal;
+		int resp = 0;
 		
-		mostrarTabla(saltosMarca, fechas, participante);
-		System.out.println();
-		mejorMarcaParticipante(saltosMarca, fechas, participante);
-		System.out.print("Introduce el dorsal del participante que deses visualizar: ");
-		dorsal = in.nextLine().toUpperCase();
-		System.out.println();
-		calcularMedia(participante, saltosMarca, dorsal);
+		do { // Menu que permite elegir como gestionar el programa
+			System.out.println("Menu Salto de longitud, que desea hacer");
+			System.out.println("1) Ver la tabla");
+			System.out.println("2) Consultar dorsal");
+			System.out.println("3) Finalizar programa");
+			System.out.print("Opcion: ");
+			resp = in.nextInt();
+			System.out.println();
+			switch(resp) {
+			case 1:
+				mostrarTabla(saltosMarca, fechas, participante);
+				System.out.println();
+				mejorMarcaParticipante(saltosMarca, fechas, participante);
+				break;
+				
+			case 2:
+				in.nextLine();
+				System.out.print("Introduce el dorsal del participante que deses visualizar: ");
+				dorsal = in.nextLine().toUpperCase();
+				calcularMedia(participante, saltosMarca, dorsal);
+				System.out.println();
+				break;
+				
+			case 3:
+				System.out.println("Finalizando programa...");
+				break;
+				
+			default:
+				System.out.println("Opcion no valida, vuelva a intentar");
+				break;
+			}
+		}while(resp != 3);
 		
 	}
 	
@@ -57,37 +83,28 @@ public class SaltoLongitud {
 		}
 	}
 	
-	public static boolean buscarDorsal(String[] participante, String dorsal) {
-		boolean coincide = false;
+	public static int buscarDorsal(String[] participante, String dorsal) {
+		int coincide = -1;
 		for(int j = 0; j < participante.length; j++) {
-			if(dorsal.equals(participante[j])) coincide = true;
+			if(dorsal.equals(participante[j])) coincide = j;
 		}
 		return coincide;
 	}
 	
 	public static void calcularMedia(String[] participante, double[][] saltosMarca, String dorsal) {
 		DecimalFormat df = new DecimalFormat("#.00");
-		boolean coincide = buscarDorsal(participante, dorsal);
-		int aux = 0;
+		int indice = buscarDorsal(participante, dorsal);
 		double media = 0;
 		
-		if (coincide == false) {
+		if (indice == -1) {
 			System.out.println("El dorsal introducido no coincide con ninguno registrado");
 		}else {
-			for(int j = 0; j < participante.length; j++) {
-				if(participante[j].equals(dorsal)) { 
-					aux = j;
-				}
+			for(int i = 0; i < saltosMarca[indice].length; i++) {
+					media += saltosMarca[indice][i]; 
 			}
-		}
-			
-			for(int i = 0; i < saltosMarca[aux].length; i++) {
-				media += saltosMarca[aux][i]; 
-			}
-			
-			media = media / saltosMarca[aux].length;
-			
-			System.out.println();
+				
+			media = media / saltosMarca[indice].length;
 			System.out.println("La media de marcas del participante " + dorsal + " es de " + df.format(media));
 		}
+	}
 }
