@@ -12,12 +12,15 @@ public class SaltoLongitud {
 		String [] participante = {"D111", "D222", "D333", "D444", "D555"};
 		String dorsal;
 		int resp = 0;
+		double[] medias;
 		
 		do { // Menu que permite elegir como gestionar el programa
 			System.out.println("Menu Salto de longitud, que desea hacer");
 			System.out.println("1) Ver la tabla");
 			System.out.println("2) Consultar dorsal");
-			System.out.println("3) Finalizar programa");
+			System.out.println("3) Dorsal con la mayor media");
+			System.out.println("4) Participantes por encima de la media");
+			System.out.println("5) Finalizar programa");
 			System.out.print("Opcion: ");
 			resp = in.nextInt();
 			System.out.println();
@@ -29,14 +32,25 @@ public class SaltoLongitud {
 				break;
 				
 			case 2:
+				medias = calcularMedias(saltosMarca);
 				in.nextLine();
 				System.out.print("Introduce el dorsal del participante que deses visualizar: ");
 				dorsal = in.nextLine().toUpperCase();
-				calcularMedia(participante, saltosMarca, dorsal);
+				mostrarMayorMediaDorsal(participante, saltosMarca, dorsal, medias);
 				System.out.println();
 				break;
 				
 			case 3:
+				medias = calcularMedias(saltosMarca);
+				mostrarMedias(saltosMarca, fechas, participante, medias);
+				break;
+				
+			case 4:
+				medias = calcularMedias(saltosMarca);
+				masQueLaMedia(medias, participante);
+				break;
+				
+			case 5:
 				System.out.println("Finalizando programa...");
 				break;
 				
@@ -44,13 +58,13 @@ public class SaltoLongitud {
 				System.out.println("Opcion no valida, vuelva a intentar");
 				break;
 			}
-		}while(resp != 3);
+		}while(resp != 5);
 		
 	}
 	
 	public static void mostrarTabla(double[][] saltosMarca, String[] fechas, String[] participante) {
 		System.out.print("\t");
-		int limite = 1;
+		int limite = 1;  // Metodo que muestra la tabla
 		for(int i = 0; i < fechas.length; i++) {
 			System.out.print(fechas[i]);
 			if(i != fechas.length) System.out.print("\t");
@@ -72,7 +86,7 @@ public class SaltoLongitud {
 	public static void mejorMarcaParticipante(double[][] saltosMarca, String[] fechas, String[] participante) {
 		double aux = -1;
 		int indice = 0;
-		
+		 // Muestra la mayor media de cada participante
 		for(int j = 0; j < saltosMarca.length; j++) {
 			for(int i = 0; i < saltosMarca[j].length; i++) {
 				if(saltosMarca[j][i] > aux) aux = saltosMarca[j][i]; indice = i;
@@ -83,28 +97,83 @@ public class SaltoLongitud {
 		}
 	}
 	
+	public static void mostrarMedias(double[][] saltosMarca, String[] fechas, String[] participante, double[] medias) {
+		DecimalFormat df = new DecimalFormat("#.00");
+		int indice = mayorMedia(medias);
+		 // Muestra todos las media de los participantes remarcando el que tenga la media mayor
+		for(int i = 0; i < medias.length; i++) {
+			if(i == indice)  System.out.println(participante[i] + " tiene la mejor media de salto, que es de " + df.format(medias[i]));
+			else System.out.println(participante[i] + " tiene una media de salto de " + df.format(medias[i]));
+		}
+		System.out.println();
+	}
+	
+	public static double[] calcularMedias(double[][] saltosMarca) {
+		double[] medias =  new double [5];
+		 // Metodo que devuelve un array que contiene todas las medias de los participantes
+		for(int j = 0; j < saltosMarca.length; j++) {
+			for(int i = 0; i < saltosMarca[j].length; i++) {
+				medias[j] += saltosMarca[j][i];
+			}
+			medias[j] = medias[j] / saltosMarca[j].length;
+		}
+		return medias;
+	}
+	
+	public static int mayorMedia(double[] medias) {
+		int indice = 0;
+		double mayor = 0;
+		 // Metodo que busca y devuelve el indice de la mayor media de todos los participantes
+		for(int i = 0; i < medias.length; i++) {
+			if(medias[i] > mayor) {
+				mayor = medias[i]; 
+				indice = i;
+			}
+		}
+		return indice;
+	}
+	
 	public static int buscarDorsal(String[] participante, String dorsal) {
 		int coincide = -1;
-		for(int j = 0; j < participante.length; j++) {
+		for(int j = 0; j < participante.length; j++) { // Metodo que busca el indice del dorsal introducido 
 			if(dorsal.equals(participante[j])) coincide = j;
 		}
 		return coincide;
 	}
 	
-	public static void calcularMedia(String[] participante, double[][] saltosMarca, String dorsal) {
+	public static void mostrarMayorMediaDorsal(String[] participante, double[][] saltosMarca, String dorsal, double[] medias) {
 		DecimalFormat df = new DecimalFormat("#.00");
 		int indice = buscarDorsal(participante, dorsal);
-		double media = 0;
-		
+		// Metodo que muestra la media del indice del valor introducido, si no existe el dorsal lo dice
+
 		if (indice == -1) {
 			System.out.println("El dorsal introducido no coincide con ninguno registrado");
 		}else {
-			for(int i = 0; i < saltosMarca[indice].length; i++) {
-					media += saltosMarca[indice][i]; 
-			}
-				
-			media = media / saltosMarca[indice].length;
-			System.out.println("La media de marcas del participante " + dorsal + " es de " + df.format(media));
+			System.out.println("La media de marcas del participante " + dorsal + " es de " + df.format(medias[indice]));
 		}
+	}
+	
+	public static double mediaGrupal(double[] medias) {
+		double mediaGrupal = 0;
+		
+		for(int j = 0; j < medias.length; j++) {
+			mediaGrupal += medias[j];
+		}
+		
+		mediaGrupal = mediaGrupal / medias.length;
+		
+		return mediaGrupal;
+	}
+	
+	public static void masQueLaMedia(double[] medias, String[] participante) {
+		DecimalFormat df = new DecimalFormat("#.00");
+		double mediaGrupal = mediaGrupal(medias);
+		
+		System.out.println("MEDIA GRUPAL " + df.format(mediaGrupal));
+		for(int j = 0; j < medias.length; j++) {
+			if(medias[j] > mediaGrupal) System.out.println(participante[j] + " esta por encima de la media, tiene una media de " + df.format(medias[j]));
+			else;
+		}
+		System.out.println();
 	}
 }
