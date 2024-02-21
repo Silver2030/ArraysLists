@@ -95,25 +95,28 @@ public class Clases {
 		
 		for(int i = 0; i < clientes.length ; i++) {
 			if(dineroPagar[i] <= 30) {
-				siguienteMes[i] = clientes[i];
+				siguienteMes[cont] = clientes[i];
 				cont++;
 			}
 			else {
-				esteMes[i] = clientes[i];
+				esteMes[cont1] = clientes[i];
 				cont1++;
 			}
 		}
 		
-		System.out.println("Clientes que deben pagar este mes");
+		System.out.println("Clientes que deben pagar este mes:");
+		System.out.println();
 		for(int i = 0; i < cont1 ; i++) {
 			System.out.println(esteMes[i]);
 		}
 		System.out.println();
-		System.out.println("Clientes que deben pagar el siguiente mes");
+		System.out.println("Clientes que deben pagar el siguiente mes:");
+		System.out.println();
 		for(int i = 0; i < cont ; i++) {
 			System.out.println(siguienteMes[i]);
 		}
 		System.out.println();
-		
 	}
+	
+	
 }
