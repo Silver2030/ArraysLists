@@ -72,7 +72,7 @@ public class ArrayPersonas {
 	public void mostrarDatos() {
 		
 		for(int i = 0; i < this.personaArraylist.size(); i++) { // Muestra todo el arraylist
-			System.out.println(this.personaArraylist.get(i).toString());
+			System.out.println(this.personaArraylist.toString());
 			System.out.println();
 		}
 	}
