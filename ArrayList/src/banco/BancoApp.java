@@ -13,13 +13,10 @@ public class BancoApp {
 		obj.cargarDatos();
 		do {
 			try {
-				for(Banco cadena : obj.getBancoArrayList()) {
-					System.out.println(cadena.toString());
-				}
-				System.out.println();
 				System.out.println("1) Realizar ingreso");
 				System.out.println("2) Realizar retiro");
-				System.out.println("3) Finalizar programa");
+				System.out.println("3) Mostrar cuentas");
+				System.out.println("4) Finalizar programa");
 				System.out.print("Introducir opción deseada: ");
 				resp = in.nextInt();
 				System.out.println();
@@ -45,8 +42,12 @@ public class BancoApp {
 						obj.retirarTexto(id, cantidad);
 						System.out.println();
 					break;
-						
+					
 					case 3:
+						obj.mostrarCuentas();
+					break;
+					
+					case 4:
 						System.out.println("Finalizando programa...");
 					break;
 					
@@ -62,7 +63,7 @@ public class BancoApp {
 			}finally {
 				in.nextLine();
 			}
-		}while(resp != 3);
+		}while(resp != 4);
 	}
 
 }

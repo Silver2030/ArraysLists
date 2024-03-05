@@ -16,6 +16,13 @@ public class ArrayBancos {
 		this.bancoArrayList.add(banco);
 	}
 	
+	public void mostrarCuentas() {
+		for(Banco cadena : this.bancoArrayList) {
+			System.out.println(cadena.toString());
+		}
+		System.out.println();
+	}
+	
 	public void ingresarTexto(String idBuscar, int ingreso) {
 		boolean transferencia = false;
 		System.out.println("Realizando ingreso...");
@@ -47,7 +54,7 @@ public class ArrayBancos {
 	public boolean retirar(String idBuscar, int retirar, boolean transferencia) throws Resultado_Negativo {
 		for(Banco cadena : this.bancoArrayList) {
 			if(cadena.getId().equals(idBuscar)) {
-				cadena.saldoNegativo(retirar, cadena.getSaldo());
+				cadena.saldoNegativo(retirar);
 				cadena.setSaldo(cadena.getSaldo() - retirar);
 				transferencia = true;
 			}

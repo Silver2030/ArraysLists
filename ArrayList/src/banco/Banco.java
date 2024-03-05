@@ -14,8 +14,8 @@ public class Banco {
 		this.saldo = saldo;
 	}
 	
-	public void saldoNegativo(int cantidad, int saldo) throws Resultado_Negativo{
-		if(saldo < cantidad) throw new Resultado_Negativo("No se puede retirar más de lo que se tiene disponible");
+	public void saldoNegativo(int cantidad) throws Resultado_Negativo{
+		if(this.saldo < cantidad) throw new Resultado_Negativo("No se puede retirar más de lo que se tiene disponible");
 	}
 
 	public String getId() {
