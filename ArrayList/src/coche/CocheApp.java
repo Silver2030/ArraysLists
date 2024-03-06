@@ -54,7 +54,6 @@ public class CocheApp {
 				System.out.println();
 				System.out.println("Error: " + ex.getMessage());
 				System.out.println();
-			}finally {
 				in.nextLine();
 			}
 		}while(resp != 6);

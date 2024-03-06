@@ -14,7 +14,7 @@ public class Calculadora {
 				System.out.println("3) Multiplicar");
 				System.out.println("4) Dividir");
 				System.out.println("5) Finalizar programa");
-				System.out.print("Introducir opción deseada: ");
+				System.out.print("Introducir opciï¿½n deseada: ");
 				resp = in.nextInt();
 				System.out.println();
 				
@@ -41,28 +41,29 @@ public class Calculadora {
 					break;
 						
 					default:
-						System.out.println("Opción introducida erronea, por favor vuelva a intentarlo");
+						System.out.println("Opciï¿½n introducida erronea, por favor vuelva a intentarlo");
 						System.out.println();
 					break;
 				}
 				if((resp > 0)&&(resp < 5)) {
 					System.out.println();
-					System.out.println("El resultado de la operación es " + resultado);
+					System.out.println("El resultado de la operaciï¿½n es " + resultado);
 					System.out.println();
 				}
 			} catch(ArithmeticException ex) {
 				System.out.println();
 				System.out.println("Error: " + ex.getMessage());
 				System.out.println();
+				in.nextLine();
 			} catch(java.util.InputMismatchException ex) {
 				System.out.println();
 				System.out.println("Error: " + ex.getMessage());
 				System.out.println();
+				in.nextLine();
 			} catch(Exception ex) {
 				System.out.println();
 				System.out.println("Error: " + ex.getMessage());
 				System.out.println();
-			} finally {
 				in.nextLine();
 			}
 		}

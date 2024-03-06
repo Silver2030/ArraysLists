@@ -56,14 +56,14 @@ public class ArrayCoches {
 				resultado = true;
 			}
 		}
-		if(resultado == false) System.out.println("No se ha encontrado ningún coche con esa marca.");
+		if(resultado == false) System.out.println("No se ha encontrado ningï¿½n coche con esa marca.");
 	}
 	
 	public void kmCoche(){
 		Scanner in = new Scanner(System.in);
 		Integer km = 0;
 		
-		System.out.print("Introduce el límite de km: ");
+		System.out.print("Introduce el lï¿½mite de km: ");
 		km = in.nextInt();
 		System.out.println();
 		cochesKm(km);

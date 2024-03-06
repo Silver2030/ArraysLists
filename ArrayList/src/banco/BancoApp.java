@@ -17,7 +17,7 @@ public class BancoApp {
 				System.out.println("2) Realizar retiro");
 				System.out.println("3) Mostrar cuentas");
 				System.out.println("4) Finalizar programa");
-				System.out.print("Introducir opción deseada: ");
+				System.out.print("Introducir opciï¿½n deseada: ");
 				resp = in.nextInt();
 				System.out.println();
 				switch(resp) {
@@ -52,7 +52,7 @@ public class BancoApp {
 					break;
 					
 					default:
-						System.out.println("Opción introducida erronea, por favor vuelva a intentarlo");
+						System.out.println("Opciï¿½n introducida erronea, por favor vuelva a intentarlo");
 						System.out.println();
 					break;
 				}
@@ -60,7 +60,6 @@ public class BancoApp {
 				System.out.println();
 				System.out.println("Error: " + ex.getMessage());
 				System.out.println();
-			}finally {
 				in.nextLine();
 			}
 		}while(resp != 4);
