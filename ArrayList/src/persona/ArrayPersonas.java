@@ -31,7 +31,7 @@ public class ArrayPersonas {
 		persona.setPrimerNombre(in.nextLine());
 		System.out.print("Introduce el apellido: ");
 		persona.setApellido(in.nextLine());
-		System.out.print("Introduce el aï¿½o de nacimiento: ");
+		System.out.print("Introduce el año del nacimiento: ");
 		persona.setNacimiento(in.nextInt());
 		
 		return persona;

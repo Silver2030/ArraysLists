@@ -13,7 +13,7 @@ public class PersonaApp {
 		do { // Menu que permite elegir como gestionar el programa
 			try {
 				System.out.println("Menu Personas, que desea hacer");
-				System.out.println("1) Aï¿½adir datos");
+				System.out.println("1) Añadir datos");
 				System.out.println("2) Borrar datos");
 				System.out.println("3) Modificar datos");
 				System.out.println("4) Visualizar datos (todos)");
@@ -25,7 +25,7 @@ public class PersonaApp {
 				
 				switch (resp) {
 				case 1:
-					System.out.print("Cuantas personas desea aï¿½adir: ");
+					System.out.print("Cuantas personas desea añadir: ");
 					veces = in.nextInt();
 					System.out.println();
 					for(int i = 0; i < veces; i++) {

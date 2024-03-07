@@ -30,8 +30,8 @@ public class ArrayCoches {
 		this.cocheArrayList.add(coche4);
 	}
 	
-	public void mostrarDatos() {
-		for(Coche cadena : this.cocheArrayList) {
+	public void mostrarDatos(ArrayList<Coche> datos) {
+		for(Coche cadena : datos) {
 			System.out.println(cadena.toString());
 			System.out.println();
 		}
@@ -56,14 +56,14 @@ public class ArrayCoches {
 				resultado = true;
 			}
 		}
-		if(resultado == false) System.out.println("No se ha encontrado ningï¿½n coche con esa marca.");
+		if(resultado == false) System.out.println("No se ha encontrado ningún coche con esa marca.");
 	}
 	
 	public void kmCoche(){
 		Scanner in = new Scanner(System.in);
 		Integer km = 0;
 		
-		System.out.print("Introduce el lï¿½mite de km: ");
+		System.out.print("Introduce el límite de km: ");
 		km = in.nextInt();
 		System.out.println();
 		cochesKm(km);
@@ -82,12 +82,12 @@ public class ArrayCoches {
 		Coche valorMax = new Coche();
 		valorMax = this.cocheArrayList.stream().max(Comparator.comparing(v -> v.getKm())).get();
 		System.out.println(valorMax);
-		System.out.println();
 	}
 	
 	public void ordenCoches() {
-		Collections.sort(this.cocheArrayList, (o1, o2) -> Integer.valueOf(o1.getKm()).compareTo(Integer.valueOf(o2.getKm())));
-		mostrarDatos();
+		ArrayList<Coche> datosOrdenados = new ArrayList<Coche>(this.cocheArrayList);
+		Collections.sort(datosOrdenados, (o1, o2) -> Integer.valueOf(o1.getKm()).compareTo(Integer.valueOf(o2.getKm())));
+		mostrarDatos(datosOrdenados);
 	}
 
 	public ArrayList<Coche> getCocheArrayList() {
