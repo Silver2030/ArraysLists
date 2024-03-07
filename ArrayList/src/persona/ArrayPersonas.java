@@ -17,6 +17,20 @@ public class ArrayPersonas {
 		this.personaArraylist = personaArraylist;
 	}
 	
+	public void generarDatos() {
+		Persona persona1 = new Persona("John", "Wayne", 1907);
+		Persona persona2 = new Persona("Steve", "McQueen", 1930);
+		Persona persona3 = new Persona("John", "Lennon", 1940);
+		Persona persona4 = new Persona("Mel", "Gibson", 1956);
+		Persona persona5 = new Persona("Bruce", "Willis", 1955);
+		
+		this.personaArraylist.add(persona1);
+		this.personaArraylist.add(persona2);
+		this.personaArraylist.add(persona3);
+		this.personaArraylist.add(persona4);
+		this.personaArraylist.add(persona5);
+	}
+	
 	public void ingresarDatos(){
 		Persona perso = pedirDatos();
 		

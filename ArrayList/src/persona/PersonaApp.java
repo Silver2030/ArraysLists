@@ -9,6 +9,7 @@ public class PersonaApp {
 		ArrayPersonas obj = new ArrayPersonas();
 		int resp = 0, veces = 0;
 		String apellido = "";
+		obj.generarDatos();
 		
 		do { // Menu que permite elegir como gestionar el programa
 			try {
