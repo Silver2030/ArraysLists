@@ -60,7 +60,7 @@ public class BancoApp {
 				System.out.println();
 				System.out.println("Error: " + ex.getMessage());
 				System.out.println();
-				in.nextLine();
+				main(args);
 			}
 		}while(resp != 4);
 	}

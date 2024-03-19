@@ -55,6 +55,7 @@ public class TestCantantes {
 				System.out.println();
 				System.out.println("Error: " + ex.getMessage());
 				System.out.println();
+				main(args);
 			}
 		}while(resp != 4);
 
