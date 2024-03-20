@@ -1,5 +1,7 @@
 package tienda;
 
+import java.util.Scanner;
+
 public class Dvd extends Articulo{
 	public int duracion;
 	public String realizador;
@@ -8,10 +10,30 @@ public class Dvd extends Articulo{
 		super();
 	}
 	
-	public Dvd(int referencia, String nombre, int precio, int duracion, String realizador) {
+	public Dvd(int referencia, String nombre, double precio, int duracion, String realizador) {
 		super(referencia, nombre, precio);
 		this.duracion = duracion;
 		this.realizador = realizador;
+		
+	}
+	
+	public Dvd pedirDatosDvd(int referencia) {
+		Scanner in = new Scanner(System.in);
+		Dvd dvd = new Dvd();
+		
+		dvd.setReferencia(referencia);
+		System.out.print("Nombre: ");
+		dvd.setNombre(in.nextLine());
+		System.out.print("Precio: ");
+		dvd.setPrecio(in.nextInt());
+		System.out.print("Duracion: ");
+		dvd.setDuracion(in.nextInt());
+		in.nextLine();
+		System.out.print("Realizador: ");
+		dvd.setRealizador(in.nextLine());
+		System.out.println();
+		
+		return dvd;
 	}
 
 	public int getDuracion() {
@@ -32,7 +54,12 @@ public class Dvd extends Articulo{
 
 	@Override
 	public String toString() {
-		return "Dvd [duracion=" + duracion + ", realizador=" + realizador + "]";
+		return super.toString() + "DvD \n" +
+				"Duracion: " + this.duracion + "\n" +
+				"Realizador: " + this.realizador + "\n";
 	}
-
+	
+	
+	
+	
 }

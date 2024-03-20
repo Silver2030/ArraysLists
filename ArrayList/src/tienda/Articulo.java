@@ -3,13 +3,13 @@ package tienda;
 public class Articulo {
 	public int referencia;
 	public String nombre;
-	public int precio;
+	public double precio;
 	
 	public Articulo() {
 		super();
 	}
 
-	public Articulo(int referencia, String nombre, int precio) {
+	public Articulo(int referencia, String nombre, double precio) {
 		super();
 		this.referencia = referencia;
 		this.nombre = nombre;
@@ -32,12 +32,22 @@ public class Articulo {
 		this.nombre = nombre;
 	}
 
-	public int getPrecio() {
+	public double getPrecio() {
 		return precio;
 	}
 
-	public void setPrecio(int precio) {
+	public void setPrecio(double precio) {
 		this.precio = precio;
 	}
+
+	@Override
+	public String toString() {
+		return 	"Libro \n" +
+				"Referencia: " + this.referencia + "\n" +
+				"Nombre: " + this.nombre + "\n" +
+				"Precio: " + this.precio + "\n";
+	}
+	
+	
 
 }
