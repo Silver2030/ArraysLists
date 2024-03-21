@@ -54,12 +54,10 @@ public class Dvd extends Articulo{
 
 	@Override
 	public String toString() {
-		return super.toString() + "DvD \n" +
+		return 	"DvD\n" +
+				super.toString() + "\n" +
 				"Duracion: " + this.duracion + "\n" +
 				"Realizador: " + this.realizador + "\n";
 	}
-	
-	
-	
 	
 }

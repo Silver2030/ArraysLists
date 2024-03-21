@@ -60,7 +60,8 @@ public class Libro extends Articulo{
 	}
 	@Override
 	public String toString() {
-		return 	super.toString() + "Libro \n" +
+		return 	"Libro\n" +
+				super.toString() + "\n" +
 				"ISBN: " + this.isbn + "\n" +
 				"Numero de Paginas: " + this.numPag + "\n" +
 				"Autor: " + this.autor + "\n";
