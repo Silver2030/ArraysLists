@@ -1,7 +1,9 @@
 package productos;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.DecimalFormat;
@@ -162,20 +164,17 @@ public class ListaProductos {
 		}catch (IOException ex) {}
 	}
 	
-	public void leerFichero(){
+	public ArrayList<String> leerFichero(){
+		ArrayList<String> datos = new ArrayList<>();
 		try {
-		FileWriter archivo = new FileWriter("C:\\Users\\ivanrq\\desktop\\Productos.txt");
-			try(BufferedWriter tienda = new BufferedWriter(archivo)) {
-				for(Productos prod : this.listaProductos) {
-					if(prod instanceof NoPerecedero) {
-						archivo.write("NoPerecedero " + prod.getNombre() + " " + prod.getCodigo() + " " + ((NoPerecedero) prod).getTipo() + " " + prod.getPrecio()+ "\n");
-					}else {
-						archivo.write("Perecedero " + prod.getNombre() + " " + prod.getCodigo() + " " + ((Perecedero) prod).getDiasCaducar() + " " + prod.getPrecio()+ "\n");
-					}
-				}
-			}
-			archivo.close();
-		}catch (IOException ex) {}
+		FileReader archivo = new FileReader("C:\\Users\\ivanrq\\desktop\\Productos.txt");
+		BufferedReader lectura = new BufferedReader(archivo);
+		String cadena;
+		while((cadena = lectura.readLine()) != null) {
+			datos.add(cadena);
+		}
+		}catch (Exception ex) {}
+		return datos;
 	}
 	
 }

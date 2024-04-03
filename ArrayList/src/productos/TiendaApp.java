@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class TiendaApp {
@@ -35,6 +36,8 @@ public class TiendaApp {
 						obj.guardarFichero();
 						System.out.println("Fichero actualizado.");
 						System.out.println();
+						ArrayList<String> datos = obj.leerFichero();
+						System.out.println(datos);
 						break;
 					
 					case 2:
