@@ -40,14 +40,13 @@ public class Perecedero extends Productos{
 		return importes;
 	}
 	
-	public Perecedero pedirDatosPerecedero() {
+	public Perecedero pedirDatosPerecedero(String codigoBuscar) {
 		Scanner in = new Scanner(System.in);
 		Perecedero perece = new Perecedero();
 		
 		System.out.print("Nombre: ");
 		perece.setNombre(in.nextLine());
-		System.out.print("Codigo: ");
-		perece.setCodigo(in.nextLine());
+		perece.setCodigo(codigoBuscar);
 		System.out.print("Precio: ");
 		perece.setPrecio(in.nextDouble());
 		in.nextLine();
@@ -67,7 +66,8 @@ public class Perecedero extends Productos{
 	
 	@Override
 	public String toString() {
-		return 	super.toString() + "\n";
+		return 	super.toString() + "\n" +
+				"Dias caducar: " + this.diasCaducar;
 	}
 
 }

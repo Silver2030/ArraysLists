@@ -22,14 +22,13 @@ public class NoPerecedero extends Productos{
 		return importe;
 	}
 	
-	public NoPerecedero pedirDatosNoPerecedero() {
+	public NoPerecedero pedirDatosNoPerecedero(String codigoBuscar) {
 		Scanner in = new Scanner(System.in);
 		NoPerecedero noPerece = new NoPerecedero();
 		
 		System.out.print("Nombre: ");
 		noPerece.setNombre(in.nextLine());
-		System.out.print("Codigo: ");
-		noPerece.setCodigo(in.nextLine());
+		noPerece.setCodigo(codigoBuscar);
 		System.out.print("Precio: ");
 		noPerece.setPrecio(in.nextDouble());
 		in.nextLine();
@@ -49,7 +48,8 @@ public class NoPerecedero extends Productos{
 
 	@Override
 	public String toString() {
-		return 	super.toString() + "\n";
+		return 	super.toString() + "\n" +
+				"Tipo: " + this.tipo;
 	}
 	
 }

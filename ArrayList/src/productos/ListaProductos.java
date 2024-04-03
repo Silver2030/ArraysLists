@@ -1,11 +1,13 @@
 package productos;
 
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Scanner;
-
-import tienda.Articulo;
-import tienda.Libro;
 
 public class ListaProductos {
 	ArrayList <Productos> listaProductos = new ArrayList <Productos>();
@@ -38,12 +40,12 @@ public class ListaProductos {
 			
 			if(producto.equalsIgnoreCase("Perecedero")) {
 				Perecedero perece = new Perecedero();
-				this.listaProductos.add(perece.pedirDatosPerecedero());
+				this.listaProductos.add(perece.pedirDatosPerecedero(codigoBuscar));
 				System.out.println("Producto Perecedero añadido.");
 				System.out.println();
 			}else {
 				NoPerecedero noPerece = new NoPerecedero();
-				this.listaProductos.add(noPerece.pedirDatosNoPerecedero());
+				this.listaProductos.add(noPerece.pedirDatosNoPerecedero(codigoBuscar));
 				System.out.println("Producto NoPerecedero añadido.");
 				System.out.println();
 			}
@@ -68,32 +70,54 @@ public class ListaProductos {
 		Scanner in = new Scanner(System.in);
 		String producto;
 		
-		System.out.println("Introduce el tipo de producto (Perecedero o NoPerecedero)");
+		System.out.print("Introduce el tipo de producto (Perecedero o NoPerecedero): ");
 		producto = in.nextLine();
-		while((!producto.equalsIgnoreCase("Perecedero"))|(!producto.equalsIgnoreCase("NoPerecedero"))) {
-			System.out.println("Error, Introduce el tipo de producto (Perecedero o NoPerecedero)");
+		while((!producto.equalsIgnoreCase("Perecedero"))&(!producto.equalsIgnoreCase("NoPerecedero"))) {
+			System.out.print("Error, Introduce el tipo de producto (Perecedero o NoPerecedero): ");
 			producto = in.nextLine();
 		}
 		
 		return producto;
 	}
 	
-	public void mostrarProductos() {
+	public void factura(String codigoBuscar, int cantidadCompra) {
+		DecimalFormat df = new DecimalFormat("#.00");
 		double importe;
 		double[] importes = new double[2];
+		boolean encontrado = false;
 		
 		for(Productos prod : this.listaProductos) {
-			if(prod instanceof NoPerecedero) {
-				importe = ((NoPerecedero) prod).calcular(0);
-				System.out.println(prod.toString() + "Importe: " + importe);
-				System.out.println();
-			}else {
-				importes = ((Perecedero) prod).calcular(0);
-				System.out.println(prod.toString() + "Importe: " + importes[0] + "\n "
-								+ "Importe con Descuento: " + importes[1]);
-				System.out.println();
+			if(prod.codigo.equalsIgnoreCase(codigoBuscar)) {
+				encontrado = true;
+				if(prod instanceof NoPerecedero) {
+					importe = ((NoPerecedero) prod).calcular(cantidadCompra);
+					System.out.println(prod.toString() + "Importe: " + df.format(importe));
+					System.out.println();
+				}else {
+					importes = ((Perecedero) prod).calcular(cantidadCompra);
+					System.out.println(prod.toString() + "Importe: " + df.format(importes[0]) + "\n "
+									+ "Importe con Descuento: " + df.format(importes[1]));
+					System.out.println();
+				}
 			}
 		}
+		if(encontrado == false) {
+			System.out.println("Producto no encontrado.");
+			System.out.println();
+		}
+	}
+	
+	public void mostrarProductos() {
+		for(Productos prod : this.listaProductos) {
+				if(prod instanceof NoPerecedero) {
+					System.out.println(prod.toString());
+					System.out.println();
+				}else {
+					System.out.println(prod.toString());
+					System.out.println();
+				}
+		}
+		System.out.println();
 	}
 	
 	public void borrarInterfaz(String codigoBuscar) {
@@ -120,6 +144,38 @@ public class ListaProductos {
 			}
 		}
 		return encontrado;
+	}
+	
+	public void guardarFichero() throws FileNotFoundException, IOException, ClassNotFoundException {
+		try {
+		FileWriter archivo = new FileWriter("C:\\Users\\ivanrq\\desktop\\Productos.txt");
+			try(BufferedWriter tienda = new BufferedWriter(archivo)) {
+				for(Productos prod : this.listaProductos) {
+					if(prod instanceof NoPerecedero) {
+						archivo.write("NoPerecedero " + prod.getNombre() + " " + prod.getCodigo() + " " + ((NoPerecedero) prod).getTipo() + " " + prod.getPrecio()+ "\n");
+					}else {
+						archivo.write("Perecedero " + prod.getNombre() + " " + prod.getCodigo() + " " + ((Perecedero) prod).getDiasCaducar() + " " + prod.getPrecio()+ "\n");
+					}
+				}
+			}
+			archivo.close();
+		}catch (IOException ex) {}
+	}
+	
+	public void leerFichero(){
+		try {
+		FileWriter archivo = new FileWriter("C:\\Users\\ivanrq\\desktop\\Productos.txt");
+			try(BufferedWriter tienda = new BufferedWriter(archivo)) {
+				for(Productos prod : this.listaProductos) {
+					if(prod instanceof NoPerecedero) {
+						archivo.write("NoPerecedero " + prod.getNombre() + " " + prod.getCodigo() + " " + ((NoPerecedero) prod).getTipo() + " " + prod.getPrecio()+ "\n");
+					}else {
+						archivo.write("Perecedero " + prod.getNombre() + " " + prod.getCodigo() + " " + ((Perecedero) prod).getDiasCaducar() + " " + prod.getPrecio()+ "\n");
+					}
+				}
+			}
+			archivo.close();
+		}catch (IOException ex) {}
 	}
 	
 }
