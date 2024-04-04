@@ -1,8 +1,9 @@
 package productos;
 
+import java.io.Serializable;
 import java.util.Scanner;
 
-public class NoPerecedero extends Productos{
+public class NoPerecedero extends Productos implements Serializable{
 	public String tipo;
 
 	public NoPerecedero() {

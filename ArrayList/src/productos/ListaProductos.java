@@ -1,17 +1,18 @@
 package productos;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Scanner;
 
-public class ListaProductos {
+public class ListaProductos implements Serializable{
 	ArrayList <Productos> listaProductos = new ArrayList <Productos>();
 
 	public ListaProductos() {
@@ -149,6 +150,57 @@ public class ListaProductos {
 	}
 	
 	public void guardarFichero() throws FileNotFoundException, IOException, ClassNotFoundException {
+		FileOutputStream fichero = null;
+		try {
+			fichero = new FileOutputStream("C:\\Users\\ivanrq\\desktop\\datos.dat");
+			ObjectOutputStream tuberia = new ObjectOutputStream(fichero);
+			tuberia.writeObject(this.listaProductos);
+		}catch(FileNotFoundException ex) {
+			ex.printStackTrace();
+		}catch(IOException ex) {
+			ex.printStackTrace();
+		}finally {
+			try {
+				fichero.close();
+			}catch(IOException ex) {
+				ex.printStackTrace();
+			}
+		}
+		
+	}
+	
+	public void leerFichero() throws FileNotFoundException, IOException, ClassNotFoundException {
+		FileInputStream fis;
+		try {
+			  fis = new FileInputStream("C:\\Users\\ivanrq\\desktop\\datos.dat");
+			  ObjectInputStream ois = new ObjectInputStream(fis);
+			  ArrayList<Productos> list = (ArrayList<Productos>) ois.readObject();
+			  ois.close();
+			  for(Productos pe : list) {
+				  System.out.println(pe);
+				  System.out.println();
+			  }
+		}catch(FileNotFoundException ex) {
+			ex.printStackTrace();
+		}catch(IOException ex) {
+			ex.printStackTrace();
+		}catch (ClassNotFoundException ex) {
+			ex.printStackTrace();
+		}
+	}
+
+	public ArrayList<Productos> getListaProductos() {
+		return listaProductos;
+	}
+
+	public void setListaProductos(ArrayList<Productos> listaProductos) {
+		this.listaProductos = listaProductos;
+	}
+	
+}
+
+/* GUARDAR COMO TXT (STRING)
+ 	public void guardarFichero() throws FileNotFoundException, IOException, ClassNotFoundException {
 		try {
 		FileWriter archivo = new FileWriter("C:\\Users\\ivanrq\\desktop\\Productos.txt");
 			try(BufferedWriter tienda = new BufferedWriter(archivo)) {
@@ -167,14 +219,13 @@ public class ListaProductos {
 	public ArrayList<String> leerFichero(){
 		ArrayList<String> datos = new ArrayList<>();
 		try {
-		FileReader archivo = new FileReader("C:\\Users\\ivanrq\\desktop\\Productos.txt");
-		BufferedReader lectura = new BufferedReader(archivo);
-		String cadena;
-		while((cadena = lectura.readLine()) != null) {
-			datos.add(cadena);
-		}
+			FileReader archivo = new FileReader("C:\\Users\\ivanrq\\desktop\\Productos.txt");
+			BufferedReader lectura = new BufferedReader(archivo);
+			String cadena;
+			while((cadena = lectura.readLine()) != null) {
+				datos.add("\n" + cadena);
+			}
 		}catch (Exception ex) {}
-		return datos;
+			return datos;
 	}
-	
-}
+ */

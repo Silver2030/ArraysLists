@@ -1,8 +1,9 @@
 package productos;
 
+import java.io.Serializable;
 import java.util.Scanner;
 
-public class Perecedero extends Productos{
+public class Perecedero extends Productos implements Serializable{
 	public int diasCaducar;
 
 	public Perecedero() {

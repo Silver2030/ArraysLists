@@ -1,11 +1,5 @@
 package productos;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class TiendaApp {
@@ -14,14 +8,14 @@ public class TiendaApp {
 		Scanner in = new Scanner(System.in);
 		ListaProductos obj = new ListaProductos();
 		int resp = 0, cantidadCompra = 0;
-		String codigoBuscar = "", linea;
+		String codigoBuscar = "";
 		
 		obj.cargarDatos();
 		
 		do {
 			try {
 				System.out.println("MENU TIENDA");
-				System.out.println("1) Grabar Productos Fichero");
+				System.out.println("1) Grabar Productos y leer (dat)");
 				System.out.println("2) Añadir Producto");
 				System.out.println("3) Realizar compra");
 				System.out.println("4) Borrar producto");
@@ -36,8 +30,7 @@ public class TiendaApp {
 						obj.guardarFichero();
 						System.out.println("Fichero actualizado.");
 						System.out.println();
-						ArrayList<String> datos = obj.leerFichero();
-						System.out.println(datos);
+						obj.leerFichero();
 						break;
 					
 					case 2:
