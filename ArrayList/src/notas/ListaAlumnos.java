@@ -19,7 +19,7 @@ public class ListaAlumnos {
 		super();
 	}
 	
-	public void añadirAlumnos() {
+	public void agregarAlumnos() {
 		Scanner in = new Scanner(System.in);
 		String name = "";
 		
@@ -65,7 +65,7 @@ public class ListaAlumnos {
 	public void guardarFichero() throws FileNotFoundException, IOException, ClassNotFoundException {
 		FileOutputStream fichero = null;
 		try {
-			fichero = new FileOutputStream("C:\\Users\\ivanrq\\desktop\\Alumnos.dat");
+			fichero = new FileOutputStream("C:\\Users\\Usuario\\Desktop\\Alumnos.dat");
 			ObjectOutputStream tuberia = new ObjectOutputStream(fichero);
 			tuberia.writeObject(this.listaAlumnos);
 		}catch(FileNotFoundException ex) {
@@ -84,22 +84,24 @@ public class ListaAlumnos {
 	
 	public void leerFichero() throws FileNotFoundException, IOException, ClassNotFoundException {
 		DecimalFormat df = new DecimalFormat("#.00");
-		ArrayList<Alumno> aprobados = new ArrayList<>();
-		ArrayList<Alumno> suspensos = new ArrayList<>();
+		ArrayList<AlumnoNotaMedia> aprobados = new ArrayList<>();
+		ArrayList<AlumnoNotaMedia> suspensos = new ArrayList<>();
 		FileInputStream fis;
 		try {
-			  fis = new FileInputStream("C:\\Users\\ivanrq\\desktop\\Alumnos.dat");
+			  fis = new FileInputStream("C:\\Users\\Usuario\\Desktop\\Alumnos.dat");
 			  ObjectInputStream ois = new ObjectInputStream(fis);
 			  ArrayList<Alumno> list = (ArrayList<Alumno>) ois.readObject();
 			  ois.close();
 			  for(Alumno al : list) {
 				  float notaMedia = (al.getNota1() + al.getNota2() + al.getNota3()) / 3;
+				  AlumnoNotaMedia alumNotaMedia = new AlumnoNotaMedia(al.getNombre(), notaMedia);
 				  System.out.println("Nombre: " + al.getNombre());
 				  System.out.println("Nota media: " + df.format(notaMedia));
+				  
 				  if(notaMedia >= 5) {
-					  aprobados.add(al);
+					  aprobados.add(alumNotaMedia);
 				  }else {
-					  suspensos.add(al);
+					  suspensos.add(alumNotaMedia);
 				  }
 				  guardarAprobado(aprobados);
 				  guardarSuspenso(suspensos);
@@ -114,10 +116,10 @@ public class ListaAlumnos {
 		}
 	}
 	
-	public void guardarAprobado(ArrayList<Alumno> al) throws FileNotFoundException, IOException, ClassNotFoundException {
+	public void guardarAprobado(ArrayList<AlumnoNotaMedia> al) throws FileNotFoundException, IOException, ClassNotFoundException {
 		FileOutputStream fichero = null;
 		try {
-			fichero = new FileOutputStream("C:\\Users\\ivanrq\\desktop\\Aprobados.dat");
+			fichero = new FileOutputStream("C:\\Users\\Usuario\\Desktop\\Aprobados.dat");
 			ObjectOutputStream tuberia = new ObjectOutputStream(fichero);
 			tuberia.writeObject(al);
 		}catch(FileNotFoundException ex) {
@@ -133,10 +135,10 @@ public class ListaAlumnos {
 		}
 	}
 	
-	public void guardarSuspenso(ArrayList<Alumno> al) throws FileNotFoundException, IOException, ClassNotFoundException {
+	public void guardarSuspenso(ArrayList<AlumnoNotaMedia> al) throws FileNotFoundException, IOException, ClassNotFoundException {
 		FileOutputStream fichero = null;
 		try {
-			fichero = new FileOutputStream("C:\\Users\\ivanrq\\desktop\\Suspensos.dat");
+			fichero = new FileOutputStream("C:\\Users\\Usuario\\Desktop\\Suspensos.dat");
 			ObjectOutputStream tuberia = new ObjectOutputStream(fichero);
 			tuberia.writeObject(al);
 		}catch(FileNotFoundException ex) {
@@ -156,16 +158,15 @@ public class ListaAlumnos {
 		DecimalFormat df = new DecimalFormat("#.00");
 		FileInputStream fis;
 		try {
-			  fis = new FileInputStream("C:\\Users\\ivanrq\\desktop\\Aprobados.dat");
+			  fis = new FileInputStream("C:\\Users\\Usuario\\Desktop\\Aprobados.dat");
 			  ObjectInputStream ois = new ObjectInputStream(fis);
-			  ArrayList<Alumno> list = (ArrayList<Alumno>) ois.readObject();
+			  ArrayList<AlumnoNotaMedia> list = (ArrayList<AlumnoNotaMedia>) ois.readObject();
 			  ois.close();
 			  System.out.println("APROBADOS " + list.size());
 			  System.out.println();
-			  for(Alumno al : list) {
-				  float notaMedia = (al.getNota1() + al.getNota2() + al.getNota3()) / 3;
-				  System.out.println("Nombre: " + al.getNombre());
-				  System.out.println("Nota media: " + df.format(notaMedia));
+			  for(AlumnoNotaMedia alMedia : list) {
+				  System.out.println("Nombre: " + alMedia.getNombre());
+				  System.out.println("Nota media: " + df.format(alMedia.getNotaMedia()));
 				  System.out.println();
 			  }
 		}catch(FileNotFoundException ex) {
@@ -181,16 +182,15 @@ public class ListaAlumnos {
 		DecimalFormat df = new DecimalFormat("#.00");
 		FileInputStream fis;
 		try {
-			  fis = new FileInputStream("C:\\Users\\ivanrq\\desktop\\Suspensos.dat");
+			  fis = new FileInputStream("C:\\Users\\Usuario\\Desktop\\Suspensos.dat");
 			  ObjectInputStream ois = new ObjectInputStream(fis);
-			  ArrayList<Alumno> list = (ArrayList<Alumno>) ois.readObject();
+			  ArrayList<AlumnoNotaMedia> list = (ArrayList<AlumnoNotaMedia>) ois.readObject();
 			  ois.close();
 			  System.out.println("SUSPENSOS "  + list.size());
 			  System.out.println();
-			  for(Alumno al : list) {
-				  float notaMedia = (al.getNota1() + al.getNota2() + al.getNota3()) / 3;
-				  System.out.println("Nombre: " + al.getNombre());
-				  System.out.println("Nota media: " + df.format(notaMedia));
+			  for(AlumnoNotaMedia alMedia : list) {
+				  System.out.println("Nombre: " + alMedia.getNombre());
+				  System.out.println("Nota media: " + df.format(alMedia.getNotaMedia()));
 				  System.out.println();
 			  }
 		}catch(FileNotFoundException ex) {

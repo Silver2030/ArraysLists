@@ -9,7 +9,7 @@ public class NotasApp {
 		ListaAlumnos obj = new ListaAlumnos();
 		
 		try {
-			obj.añadirAlumnos();
+			obj.agregarAlumnos();
 			obj.guardarFichero();
 			obj.leerFichero();
 			obj.leerAprobados();
