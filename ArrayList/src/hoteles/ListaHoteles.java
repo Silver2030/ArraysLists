@@ -28,7 +28,7 @@ public class ListaHoteles {
 					for(int i = 0; i < hoteles.length ; i++) {
 						if(reserva instanceof ReservaHotel) {
 							if(((ReservaHotel) reserva).getNombreHotel().equalsIgnoreCase(hoteles[i])) {
-								reservasHoteles[i] ++;
+								reservasHoteles[i] += reserva.getNumeroPersonas();
 								importeHoteles[i] += reserva.getPrecioBase() * reserva.getNumeroDias();
 								
 							}
